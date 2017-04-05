@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.azrael.main.user.entity">
+	<class name="Employee" table="employee">
+		<id name="id" type="string">
+			<column name="e_id" length="32"></column>
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="name" column="e_name" type="string" length="20" not-null="true"></property>
+		<property name="gender" column="e_gender" type="boolean"  not-null="true"></property>
+		<property name="age" column="e_age" type="integer"  not-null="true"></property>
+		<property name="phoneNumber" column="e_phone_num" type="string" length="20" not-null="true"></property>
+		<property name="arrivedAt" column="e_arrived_at" type="double"  not-null="true"></property>
+	</class>
+
+</hibernate-mapping>
+
+
+

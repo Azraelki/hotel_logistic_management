@@ -1,4 +1,4 @@
-package cn.azrael.main.dao;
+package cn.azrael.main.core.dao;
 
 import java.io.Serializable;
 import java.util.List;

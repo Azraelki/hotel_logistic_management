@@ -8,15 +8,10 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-	
-	<bean id="testDao" class="cn.azrael.test.dao.impl.TestDaoImpl" parent="baseDao">
-	</bean>
-	
+	<bean id="employeeDao" class="cn.azrael.main.user.dao.impl.EmployeeDaoImpl" parent="baseDao"></bean>
+	<bean id="userDao" class="cn.azrael.main.user.dao.impl.UserDaoImpl" parent="baseDao"></bean>
+	<bean id="employeeWorkDao" class="cn.azrael.main.user.dao.impl.EmployeeWorkDaoImpl" parent="baseDao"></bean>
 	<!--  配置注解扫描信息,扫描service-->
-	<context:component-scan base-package="cn.azrael.test.service.impl"></context:component-scan>
+	<context:component-scan base-package="cn.azrael.main.user.service.impl"></context:component-scan>
 	
-</beans>      
-
-
-
-  
+</beans> 

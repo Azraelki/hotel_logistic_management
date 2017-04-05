@@ -43,7 +43,7 @@
 		</property>
 		<property name="mappingLocations">
 			<list>
-				<!-- <value>classpath:cn/azrael/*/entity/*.hbm.xml</value> -->
+				<value>classpath:cn/azrael/main/*/entity/*.hbm.xml</value>
 				<value>classpath:cn/azrael/test/entity/*.hbm.xml</value>
 			</list>
 		</property>
@@ -72,9 +72,14 @@
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" />
 	</aop:config>
 	
-	
+	<!-- 所有业务dao的parent -->
+    <bean id="baseDao" abstract="true">
+    	<property name="sessionFactory" ref="sessionFactory"></property>
+    </bean>
+    
 	<!-- 导入其他spring文件 -->
 	<import resource="classpath:cn/azrael/*/config/*-spring.xml"/>
+	<import resource="classpath:cn/azrael/main/*/config/*-spring.xml"/>
 </beans>      
 
 

@@ -1,18 +1,13 @@
-package cn.azrael.main.dao.impl;
+package cn.azrael.main.core.dao.impl;
 
 import java.io.Serializable;
 import java.lang.reflect.ParameterizedType;
-import java.lang.reflect.Type;
 import java.util.List;
 
 import org.hibernate.Query;
-import org.hibernate.Session;
-import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-import cn.azrael.main.dao.BaseDao;
+import cn.azrael.main.core.dao.BaseDao;
 
 public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T>{
 	Class<T> clazz;
@@ -41,6 +36,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T>{
 		return getHibernateTemplate().get(clazz, id);
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	public List<T> findObjects() {
 		Query query = getSession().createQuery("FROM " + clazz.getSimpleName());
