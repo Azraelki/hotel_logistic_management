@@ -9,9 +9,11 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.azrael.main.user.dao.EmployeeDao;
 import cn.azrael.main.user.dao.EmployeeWorkDao;
+import cn.azrael.main.user.dao.JobDao;
 import cn.azrael.main.user.dao.UserDao;
 import cn.azrael.main.user.entity.Employee;
 import cn.azrael.main.user.entity.EmployeeWork;
+import cn.azrael.main.user.entity.Job;
 import cn.azrael.main.user.entity.User;
 
 public class TestUserModel {
@@ -25,9 +27,15 @@ public class TestUserModel {
 		EmployeeDao ed = (EmployeeDao) ac.getBean("employeeDao");
 		EmployeeWorkDao ewd = (EmployeeWorkDao) ac.getBean("employeeWorkDao");
 		UserDao ud = (UserDao) ac.getBean("userDao");
+		JobDao jd = (JobDao) ac.getBean("jobDao");
+		Job j = new Job();
 		Employee e = new Employee();
 		User u = new User();
 		EmployeeWork ew = new EmployeeWork();
+		j.setId(2);
+		j.setName("经理");
+		//jd.save(j);
+		e.setJobId(j);
 		e.setAge(22);
 		e.setName("hello");
 		e.setGender(false);
