@@ -34,10 +34,10 @@ public class TestUserModel {
 		e.setPhoneNumber("13456754346");
 		e.setArrivedAt(new Date().getTime()/1000.0);
 		//ed.save(e);
-		u.setEmployeeId(ed.findObjectById("297e06de5b3d8f80015b3d8f82990000"));
+		u.setEmployeeId(ed.findObjectById("402880eb5b415ed9015b415edab50000"));
 		u.setType(1);
 		u.setPassword("123456");
-		ew.setEmployeeId(ed.findObjectById("297e06de5b3d8f80015b3d8f82990000"));
+		ew.setEmployeeId(ed.findObjectById("402880eb5b415ed9015b415edab50000"));
 		ew.setLeaveNum(12);
 		ew.setCleanNum(12);
 		ew.setDate(new Date().getTime()/1000.0);
