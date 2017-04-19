@@ -3,6 +3,7 @@ package cn.azrael.test.entity;
 import java.io.Serializable;
 
 public class TestUser implements Serializable{
+	private static final long serialVersionUID = 175185843355668481L;
 	private String id;
 	private String name;
 	public TestUser() {

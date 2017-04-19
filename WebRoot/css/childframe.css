@@ -1,0 +1,10 @@
+a{
+	text-decoration: none;
+}
+iframe{
+	width: 100%;
+	height: 600px;
+}
+.notvisible{
+	display: none;
+}

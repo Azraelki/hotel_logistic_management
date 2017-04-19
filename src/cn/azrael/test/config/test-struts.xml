@@ -3,7 +3,7 @@
           "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
           "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-   <package name="test-action" namespace="/" extends="struts-default">
+   <package name="test-action" namespace="/test/" extends="struts-default">
    		<action name="test_*" class="cn.azrael.test.action.TestAction" method="{1}">
    			<result name="success">/WEB-INF/jsp/test/test.jsp</result>
    		</action>

@@ -14,4 +14,8 @@
     
     <!-- 导入其他struts文件 -->
     <include file="cn/azrael/test/config/test-struts.xml"></include>
+    <!-- login -->
+    <include file="cn/azrael/main/login/config/login-struts.xml"></include>
+    <!-- user -->
+    <include file="cn/azrael/main/user/config/user-struts.xml"></include>
 </struts>

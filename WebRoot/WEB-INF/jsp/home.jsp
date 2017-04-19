@@ -1,11 +1,22 @@
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
-
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+    application.setAttribute("basePath",basePath);
+    application.setAttribute("path", path);
+%>
 <!DOCTYPE html>
 <html>
   <head>
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>酒店后勤管理系统</title>
-    <jsp:include page="${basePath }common/header.jsp"></jsp:include>
+    <jsp:include page="/common/header.jsp"></jsp:include>
+    <link rel="stylesheet" href="${path }/css/home.css">
+    <script>
+    	$(function(){
+    		createContent();
+    	});
+    </script>
   </head>
   
   <body style="padding:10px">
@@ -22,11 +33,11 @@
       	</div>
       	<div class="navbar-collapse collapse" id="navbar-main">
       	  <ul class="nav navbar-nav">
-      	  	<li><a id="a" href="#">用户管理</a></li>
-      	  	<li><a href="#">布草管理</a></li>
-      	  	<li><a href="#">采购管理</a></li>
-      	  	<li><a href="#">餐饮管理</a></li>
-      	  	<li><a href="#">设施管理</a></li>
+      	  	<li class="active"><a title="content" href="${path }/user/employee.action">用户管理</a></li>
+      	  	<li><a title="content" href="#">布草管理</a></li>
+      	  	<li><a title="content" href="#">采购管理</a></li>
+      	  	<li><a title="content" href="#">餐饮管理</a></li>
+      	  	<li><a title="content" href="#">设施管理</a></li>
       	  </ul>
       	  <ul class="nav navbar-nav navbar-right">
 		    <li class="dropdown">
@@ -45,8 +56,8 @@
     </div>
     <!-- /nav-top -->
     <!-- content -->
-    <div class="container">
-	  <iframe id="content" scrolling="no" src="${basePath }test_user.jsp" frameborder="0"></iframe>
+    <div id="contentDiv" class="container">
+	  <iframe id="content" scrolling="no" src="${path }/user/employee.action" frameborder="0"></iframe>
     </div>
     <!-- /content -->
   </body>
