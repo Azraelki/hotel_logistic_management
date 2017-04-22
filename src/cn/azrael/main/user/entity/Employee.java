@@ -14,7 +14,7 @@ public class Employee implements Serializable{
 	private Job jobId;
 	private String name;
 	private boolean gender;
-	private int age;
+	private Integer age;
 	private String phoneNumber;
 	private double arrivedAt;
 	public String getId() {
@@ -41,10 +41,10 @@ public class Employee implements Serializable{
 	public void setGender(boolean gender) {
 		this.gender = gender;
 	}
-	public int getAge() {
+	public Integer getAge() {
 		return age;
 	}
-	public void setAge(int age) {
+	public void setAge(Integer age) {
 		this.age = age;
 	}
 	public String getPhoneNumber() {

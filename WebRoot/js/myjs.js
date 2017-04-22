@@ -1,3 +1,47 @@
+//---------childframe--------------
+//对信息展示的时间戳加工
+function spanDateTransplate(){
+	$("span[title='date']").text(function(){
+		var date = $(this).find("input:first").val();
+		return translateRealToDate(date);
+	});
+}
+//操作信息
+function deleteAndEditInfo(){
+	var url = $("#list_info").attr("title");
+	$("a.btn").click(function(e){
+		e.preventDefault();
+		var id = $(this).attr("title");
+		var href = $(this).attr("href");
+		var myUrl = url.replace("_info","_"+href);
+		var pageNo = $("#pagination li.active a:first").text();
+		if($(this).attr("href") == "delete"){
+			showDeleteDialog();
+			$("button[name='confirm']").click(function(){
+				if($(this).attr("id") == "confirm"){
+					$("#list_info").attr({
+						"action": myUrl+"?employee.id="+id+"&pageNo="+pageNo
+					});
+					$("#list_info").submit();
+				}else{
+					hideDeleteDialog();
+				}
+			});
+		}else{
+			$("#list_info").attr({
+				"action": myUrl+"?employee.id="+id+"&pageNo="+pageNo
+			});
+			$("#list_info").submit();
+		}
+//		$.post(myUrl,{"employee.id":id},function(result){
+//			if(href != "editUI")
+//				$("#list_info").submit();
+//			else{
+//				location.reload();
+//			}
+//		});
+	});
+}
 //全选实现
 function allCheck(){
 	$("#checkbox").change(function(){
@@ -11,7 +55,7 @@ function allCheck(){
 		}
 	});
 }
-
+//------------------home---------------------
 //home页面
 //创建
 //创建content
@@ -49,7 +93,6 @@ function createTabContent(href,addr){
 	var $iframe = $("<iframe></iframe>");
 	$iframe.attr({
 		"id": href+"-frame",
-		"scrolling": "no",
 		"frameborder": 0,
 		"src": addr
 	});
@@ -111,4 +154,32 @@ function clickPageView(className){
 		$("#myTab").append($li);
 		$("#myTabContent").append($div);
 	});
+}
+//------------------util--------------
+//date转换为时间戳
+function translateDateToReal(date){
+	return Date.parse(date.toString())/1000;
+}
+//时间戳转换date
+function translateRealToDate(real){
+	var date = new Date()
+	date.setTime(real*1000);
+	var year = ""+date.getFullYear();
+	var month = ""+(date.getMonth()+1);
+	if(month.length == 1){
+		month = "0"+month;
+	}
+	var day = ""+date.getDate();
+	if(day.length == 1){
+		day = "0"+day;
+	}
+	var dateStr = year+"-"+month+"-"+day;
+	return dateStr;
+}
+//delete确认提示
+function showDeleteDialog(){
+	$("#deleteDialog").css("display","block");
+}
+function hideDeleteDialog(){
+	$("#deleteDialog").css("display","none");
 }

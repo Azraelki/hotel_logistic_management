@@ -7,7 +7,7 @@ import com.opensymphony.xwork2.ActionSupport;
 public class BaseAction extends ActionSupport{
 	protected String[] selectedRow;
 	protected PageResult pageResult;
-	protected int pageNo;
+	protected int pageNo = 1;
 	protected int pageSize;
 	//默认页大小
 	public static int DEFAULT_PAGE_SIZE = 7;
