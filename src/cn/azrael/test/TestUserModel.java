@@ -15,6 +15,7 @@ import cn.azrael.main.user.entity.Employee;
 import cn.azrael.main.user.entity.EmployeeWork;
 import cn.azrael.main.user.entity.Job;
 import cn.azrael.main.user.entity.User;
+import cn.azrael.main.user.service.JobService;
 
 public class TestUserModel {
 	private ApplicationContext ac;
@@ -51,5 +52,10 @@ public class TestUserModel {
 		ew.setDate(new Date().getTime()/1000.0);
 		ud.save(u);
 		ewd.save(ew);
+	}
+	@Test
+	public void testJob(){
+		JobService js = (JobService) ac.getBean("jobService");
+		js.findObjects();
 	}
 }

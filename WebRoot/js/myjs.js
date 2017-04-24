@@ -7,7 +7,7 @@ function spanDateTransplate(){
 	});
 }
 //操作信息
-function deleteAndEditInfo(){
+function deleteAndEditInfo(item){
 	var url = $("#list_info").attr("title");
 	$("a.btn").click(function(e){
 		e.preventDefault();
@@ -15,12 +15,27 @@ function deleteAndEditInfo(){
 		var href = $(this).attr("href");
 		var myUrl = url.replace("_info","_"+href);
 		var pageNo = $("#pagination li.active a:first").text();
+		if($(this).attr("id") == "serach"){
+			pageNo = 1;
+		}
 		if($(this).attr("href") == "delete"){
 			showDeleteDialog();
 			$("button[name='confirm']").click(function(){
 				if($(this).attr("id") == "confirm"){
 					$("#list_info").attr({
-						"action": myUrl+"?employee.id="+id+"&pageNo="+pageNo
+						"action": myUrl+"?"+item+".id="+id+"&pageNo="+pageNo
+					});
+					$("#list_info").submit();
+				}else{
+					hideDeleteDialog();
+				}
+			});
+		}else if($(this).attr("href") == "deleteSelected"){
+			showDeleteDialog();
+			$("button[name='confirm']").click(function(){
+				if($(this).attr("id") == "confirm"){
+					$("#list_info").attr({
+						"action": myUrl+"?"+"&pageNo="+pageNo
 					});
 					$("#list_info").submit();
 				}else{
@@ -29,7 +44,7 @@ function deleteAndEditInfo(){
 			});
 		}else{
 			$("#list_info").attr({
-				"action": myUrl+"?employee.id="+id+"&pageNo="+pageNo
+				"action": myUrl+"?"+item+".id="+id+"&pageNo="+pageNo
 			});
 			$("#list_info").submit();
 		}

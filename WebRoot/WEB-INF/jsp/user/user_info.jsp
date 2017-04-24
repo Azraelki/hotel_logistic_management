@@ -36,31 +36,31 @@
 	    </tr>
 	  </thead>
 	  <tbody>
-	  	<c:forEach var="employee" items="${pageResult.items }" varStatus="status">
+	  	<c:forEach var="item" items="${pageResult.items }" varStatus="status">
 		    <tr>
 		      <c:choose>
-		      	<c:when test="${employee.jobId.name=='店长' }">
+		      	<c:when test="${item.jobId.name=='店长' }">
 		      		<td></td>
 		      	</c:when>
 		      	<c:otherwise>
-		      		<td><input name="selectedRow" type="checkbox" value="${employee.id }"></td>
+		      		<td><input name="selectedRow" type="checkbox" value="${item.id }"></td>
 		      	</c:otherwise>
 		      </c:choose>
 		      
-		      <td>${employee.name }</td>
+		      <td>${item.name }</td>
 		      <c:choose>
-		      	<c:when test="${employee.gender }"><td>女</td></c:when>
+		      	<c:when test="${item.gender }"><td>女</td></c:when>
 		      	<c:otherwise><td>男</td></c:otherwise>
 		      </c:choose>
-		      <td>${employee.age }</td>
-		      <td>${employee.jobId.name }</td>
-		      <td>${employee.phoneNumber }</td>
+		      <td>${item.age }</td>
+		      <td>${item.jobId.name }</td>
+		      <td>${item.phoneNumber }</td>
 		      <td><span title="date">
-		      <input type="hidden" value="${employee.arrivedAt }">
+		      <input type="hidden" value="${item.arrivedAt }">
 		      </span></td>
 		      <td>
-		      	<a href="editUI" title="${employee.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">编辑</a>
-		      	<a href="delete" title="${employee.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">删除</a>
+		      	<a href="editUI" title="${item.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">编辑</a>
+		      	<a href="delete" title="${item.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">删除</a>
 		      </td>
 		    </tr>
 	    </c:forEach>
@@ -92,7 +92,7 @@
 	<script>
 		$(function(){
 			allCheck();
-			deleteAndEditInfo();
+			deleteAndEditInfo("employee");
 			spanDateTransplate();
 		});
 	</script>

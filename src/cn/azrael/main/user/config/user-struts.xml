@@ -13,9 +13,17 @@
     		<result name="{1}">/WEB-INF/jsp/user/user_{1}.jsp</result>
     	</action>
     	<action name="job_*" class="cn.azrael.main.user.action.JobAction" method="{1}">
+    		<result name="list" type="redirectAction">
+    			<param name="actionName">job_info</param>
+    			<param name="pageNo">${pageNo}</param>
+    		</result>
     		<result name="{1}">/WEB-INF/jsp/user/job_{1}.jsp</result>
     	</action>
     	<action name="work_*" class="cn.azrael.main.user.action.WorkAction" method="{1}">
+    		<result name="list" type="redirectAction">
+    			<param name="actionName">work_info</param>
+    			<param name="pageNo">${pageNo}</param>
+    		</result>
     		<result name="{1}">/WEB-INF/jsp/user/work_{1}.jsp</result>
     	</action>
     </package>
