@@ -7,8 +7,8 @@ public class EmployeeWork implements Serializable{
 	
 	private String id;
 	private Employee employeeId;
-	private int leaveNum;
-	private int cleanNum;
+	private Integer leaveNum;
+	private Integer cleanNum;
 	private double date;
 	public String getId() {
 		return id;
@@ -22,16 +22,16 @@ public class EmployeeWork implements Serializable{
 	public void setEmployeeId(Employee employeeId) {
 		this.employeeId = employeeId;
 	}
-	public int getLeaveNum() {
+	public Integer getLeaveNum() {
 		return leaveNum;
 	}
-	public void setLeaveNum(int leaveNum) {
+	public void setLeaveNum(Integer leaveNum) {
 		this.leaveNum = leaveNum;
 	}
-	public int getCleanNum() {
+	public Integer getCleanNum() {
 		return cleanNum;
 	}
-	public void setCleanNum(int cleanNum) {
+	public void setCleanNum(Integer cleanNum) {
 		this.cleanNum = cleanNum;
 	}
 	public double getDate() {

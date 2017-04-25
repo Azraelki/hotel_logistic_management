@@ -5,16 +5,26 @@ import java.util.List;
 import javax.annotation.Resource;
 
 
+
+
+
+import org.apache.commons.lang3.StringUtils;
+
 import cn.azrael.main.core.action.BaseAction;
 import cn.azrael.main.core.util.QueryHelper;
+import cn.azrael.main.user.entity.Employee;
 import cn.azrael.main.user.entity.EmployeeWork;
+import cn.azrael.main.user.service.EmployeeService;
 import cn.azrael.main.user.service.EmployeeWorkService;
 
 public class WorkAction extends BaseAction{
 	@Resource
 	private EmployeeWorkService employeeWorkService;
+	@Resource
+	private EmployeeService employeeService;
 	private List<EmployeeWork> employeeWorkList;
 	private EmployeeWork employeeWork;
+	private Employee employee;
 	private String message;
 	/**
 	 * 展示员工列表信息
@@ -23,10 +33,15 @@ public class WorkAction extends BaseAction{
 		QueryHelper queryHelper = new QueryHelper(EmployeeWork.class, "ew");
 		try {
 			System.out.println(pageNo);
-			if(employeeWork!=null){
-				//TODO
+			if(employee!=null && StringUtils.isNotBlank(employee.getName())){
+				Employee e = employeeService.findByName(employee.getName());
+				if(e!=null){
+					queryHelper.addCondition("ew.employeeId.id = ?", e.getId());
+				}else{
+					employee.setName(employee.getName()+"不存在");
+				}
 			}
-			queryHelper.addOrderByProperty("ew.arrivedAt", QueryHelper.ORDER_BY_ASC);
+			queryHelper.addOrderByProperty("ew.date", QueryHelper.ORDER_BY_DESC);
 			pageResult = employeeWorkService.getPageResult(queryHelper, this.getPageNo(), this.getPageSize());
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
@@ -40,12 +55,18 @@ public class WorkAction extends BaseAction{
 	public String add() throws Exception{
 		if(employeeWork!=null){
 			try {
-				employeeWorkService.save(employeeWork);
+				Employee e = employeeService.findByName(employeeWork.getEmployeeId().getName());
+				if(e!=null){
+					employeeWork.setEmployeeId(e);
+					employeeWorkService.save(employeeWork);
+					message = "添加成功！";
+				}else{
+					message = "员工不存在，请检查员工姓名是否书写正确！";
+				}
 			} catch (Exception e) {
 				message = "添加失败";
 				throw new Exception(e.getMessage());
 			}
-			message = "添加成功！";
 		}
 		return "add";
 	}
@@ -114,6 +135,12 @@ public class WorkAction extends BaseAction{
 	}
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	public Employee getEmployee() {
+		return employee;
+	}
+	public void setEmployee(Employee employee) {
+		this.employee = employee;
 	}
 	
 	

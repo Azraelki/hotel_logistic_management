@@ -51,12 +51,16 @@ public class EmployeeAction extends BaseAction{
 	public String add() throws Exception{
 		if(employee!=null){
 			try {
+				if(employeeService.findByName(employee.getName())!=null){
+					message = "出现同名员工,请加以区分!";
+					return "add";
+				}
 				employeeService.save(employee);
+				message = "添加成功！";
 			} catch (Exception e) {
 				message = "添加失败";
 				throw new Exception(e.getMessage());
 			}
-			message = "添加成功！";
 		}
 		return "add";
 	}
