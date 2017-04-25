@@ -16,7 +16,7 @@ public class Employee implements Serializable{
 	private boolean gender;
 	private Integer age;
 	private String phoneNumber;
-	private double arrivedAt;
+	private Double arrivedAt;
 	public String getId() {
 		return id;
 	}
@@ -53,10 +53,10 @@ public class Employee implements Serializable{
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
 	}
-	public double getArrivedAt() {
+	public Double getArrivedAt() {
 		return arrivedAt;
 	}
-	public void setArrivedAt(double arrivedAt) {
+	public void setArrivedAt(Double arrivedAt) {
 		this.arrivedAt = arrivedAt;
 	}
 	@Override

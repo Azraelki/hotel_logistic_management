@@ -98,14 +98,7 @@
     </div>
     <script>
     	$(function(){
-    		$("#temDate").change(function(){
-    			var date = translateDateToReal($(this).val());
-    			$("#eArrivedAt").val(date);
-    		});
-    		$("#eArrivedAt").change(function(){
-    			var date = translateRealToDate($(this).val());
-    			$("#temDate").val(real);
-    		});
+    		changeTogether("temDate", "eArrivedAt");
     		$("#temDate").val(translateRealToDate($("#eArrivedAt").val()));
     	});
     </script>

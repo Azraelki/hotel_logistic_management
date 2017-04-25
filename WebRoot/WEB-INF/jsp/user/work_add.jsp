@@ -56,14 +56,15 @@
     </div>
     <script>
     	$(function(){
-    		$("#temDate").change(function(){
+    		/*$("#temDate").change(function(){
     			var date = translateDateToReal($(this).val());
     			$("#dateAt").val(date);
     		});
     		$("#dateAt").change(function(){
     			var date = translateRealToDate($(this).val());
-    			$("#temDate").val(real);
-    		});
+    			$("#temDate").val(date);
+    		});*/
+    		changeTogether("temDate", "dateAt");
     		$("input").click(function(e){
     			$("#message").text("");
     		});

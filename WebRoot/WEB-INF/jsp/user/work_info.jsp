@@ -18,6 +18,18 @@
   	  	<div class="col-xs-3">
   	  		<input name="employee.name" value="${employee.name }" class="form-control" type="text" id="serachContent" placeholder="请输入查询员工的姓名">
   	  	</div>
+  	  	<div class="col-xs-5">
+  	  		<div class="row">
+  	  			<div class="col-xs-6">
+  	  				<input  class="form-control" type="date" id="begin" name="temDate">
+  	  				<input class="form-control" type="hidden" value="${beginDate }" name="beginDate" id="beginDate">
+  	  			</div>
+  	  			<div class="col-xs-6">
+  	  				<input  class="form-control" type="date" id="end" name="temDate">
+  	  				<input class="form-control" type="hidden" value="${endDate }" name="endDate" id="endDate">
+  	  			</div>
+  	  		</div>
+  	  	</div>
   	  	<div class="col-xs-2">
   	  		<a id="serach" href="info" class="btn btn-default btn-block">搜&nbsp;索</a>
   	  	</div>
@@ -79,6 +91,13 @@
 			allCheck();
 			deleteAndEditInfo("employeeWork");
 			spanDateTransplate();
+			changeTogether("begin", "beginDate");
+			changeTogether("end", "endDate");
+			if($("#beginDate").val()>0){
+				$("#begin").val(translateRealToDate($("#beginDate").val()));
+			}
+			if($("#endDate").val()>0)
+				$("#end").val(translateRealToDate($("#endDate").val()));
 		});
 	</script>
   </body>

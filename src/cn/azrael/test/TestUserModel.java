@@ -38,6 +38,7 @@ public class TestUserModel {
 		EmployeeService es = (EmployeeService) ac.getBean("employeeService");
 		List<Employee> el = es.findObjects(queryHelper);
 		System.out.println(el.size());
+		//System.out.println(es.findByName("1234"));
 	}
 	@Test
 	public void testDataImport() throws ParseException{
@@ -48,7 +49,7 @@ public class TestUserModel {
 		j.setId(3);
 		EmployeeWork ew = new EmployeeWork();
 		e.setAge(10);
-		e.setArrivedAt(new Date().getTime()/1000);
+		e.setArrivedAt(new Date().getTime()/1000.0);
 		e.setGender(false);
 		e.setJobId(j);
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -60,7 +61,7 @@ public class TestUserModel {
 			ew.setEmployeeId(e);
 			ew.setCleanNum(i+2);
 			ew.setLeaveNum(30-i);
-			ew.setDate(sdf.parse("2017-04-"+(i+1)).getTime()/1000);
+			ew.setDate(sdf.parse("2017-04-"+(i+1)).getTime()/1000.0);
 			ews.save(ew);
 		}
 	}

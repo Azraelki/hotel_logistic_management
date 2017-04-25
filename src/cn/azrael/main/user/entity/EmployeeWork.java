@@ -9,7 +9,7 @@ public class EmployeeWork implements Serializable{
 	private Employee employeeId;
 	private Integer leaveNum;
 	private Integer cleanNum;
-	private double date;
+	private Double date;
 	public String getId() {
 		return id;
 	}
@@ -34,10 +34,10 @@ public class EmployeeWork implements Serializable{
 	public void setCleanNum(Integer cleanNum) {
 		this.cleanNum = cleanNum;
 	}
-	public double getDate() {
+	public Double getDate() {
 		return date;
 	}
-	public void setDate(double date) {
+	public void setDate(Double date) {
 		this.date = date;
 	}
 	@Override

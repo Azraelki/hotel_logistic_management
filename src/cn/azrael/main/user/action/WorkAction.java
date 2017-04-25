@@ -26,6 +26,8 @@ public class WorkAction extends BaseAction{
 	private EmployeeWork employeeWork;
 	private Employee employee;
 	private String message;
+	private Double beginDate;
+	private Double endDate;
 	/**
 	 * 展示员工列表信息
 	 */
@@ -35,11 +37,20 @@ public class WorkAction extends BaseAction{
 			System.out.println(pageNo);
 			if(employee!=null && StringUtils.isNotBlank(employee.getName())){
 				Employee e = employeeService.findByName(employee.getName());
+				System.out.println(e);
 				if(e!=null){
 					queryHelper.addCondition("ew.employeeId.id = ?", e.getId());
 				}else{
 					employee.setName(employee.getName()+"不存在");
 				}
+			}
+			if(beginDate != null){
+				System.out.println(beginDate);
+				queryHelper.addCondition("ew.date >= ?", beginDate-1);
+			}
+			if(endDate != null){
+				System.out.println(endDate);
+				queryHelper.addCondition("ew.date <= ?", endDate);
 			}
 			queryHelper.addOrderByProperty("ew.date", QueryHelper.ORDER_BY_DESC);
 			pageResult = employeeWorkService.getPageResult(queryHelper, this.getPageNo(), this.getPageSize());
@@ -141,6 +152,18 @@ public class WorkAction extends BaseAction{
 	}
 	public void setEmployee(Employee employee) {
 		this.employee = employee;
+	}
+	public Double getBeginDate() {
+		return beginDate;
+	}
+	public void setBeginDate(Double beginDate) {
+		this.beginDate = beginDate;
+	}
+	public Double getEndDate() {
+		return endDate;
+	}
+	public void setEndDate(Double endDate) {
+		this.endDate = endDate;
 	}
 	
 	

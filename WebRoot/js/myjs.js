@@ -1,4 +1,15 @@
 //---------childframe--------------
+//date型input与hidden型input的change联动
+function changeTogether(dateInputId,hiddenInputId){
+	$("#"+dateInputId).change(function(){
+		var date = translateDateToReal($(this).val());
+		$("#"+hiddenInputId).val(date);
+	});
+	$("#"+hiddenInputId).change(function(){
+		var date = translateRealToDate($(this).val());
+		$("#"+dateInputId).val(date);
+	});
+}
 //对信息展示的时间戳加工
 function spanDateTransplate(){
 	$("span[title='date']").text(function(){
