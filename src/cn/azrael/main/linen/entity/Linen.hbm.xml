@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.azrael.main.linen.entity">
+	<class name="Linen" table="linens">
+		<id name="id" type="string">
+			<column name="l_id" length="32"></column>
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="date" column="l_date" type="double" not-null="true"></property>
+		<many-to-one name="employeeId" class="cn.azrael.main.user.entity.Employee" column="e_id" not-null="true"></many-to-one>
+		<set name="linensInfos" cascade="save-update,delete" table="linens_info">
+			<key column="l_id" ></key>
+			<one-to-many class="LinensInfo"/>
+		</set>
+	</class>
+
+</hibernate-mapping>
+
+
+

@@ -11,7 +11,7 @@
 		</id>
 		<property name="type" column="u_type" type="integer"  not-null="true"></property>
 		<property name="password" column="u_password" type="string"  length="20" not-null="true"></property>
-		<many-to-one name="employeeId"   class="Employee" column="e_id" unique="true"></many-to-one>
+		<many-to-one name="employeeId"   class="Employee" column="e_id" unique="true" not-null="true"></many-to-one>
 	</class>
 
 </hibernate-mapping>

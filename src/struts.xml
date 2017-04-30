@@ -18,4 +18,6 @@
     <include file="cn/azrael/main/login/config/login-struts.xml"></include>
     <!-- user -->
     <include file="cn/azrael/main/user/config/user-struts.xml"></include>
+    <!-- linen -->
+    <include file="cn/azrael/main/linen/config/linen-struts.xml"></include>
 </struts>

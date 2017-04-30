@@ -33,6 +33,8 @@ function deleteAndEditInfo(item){
 			showDeleteDialog();
 			$("button[name='confirm']").click(function(){
 				if($(this).attr("id") == "confirm"){
+					if(pageNo.length <= 0)
+						pageNo = 1;
 					$("#list_info").attr({
 						"action": myUrl+"?"+item+".id="+id+"&pageNo="+pageNo
 					});
@@ -54,8 +56,12 @@ function deleteAndEditInfo(item){
 				}
 			});
 		}else{
+			myUrl = myUrl+"?"+item+".id="+id;
+			if(pageNo.length <= 0)
+				pageNo = 1;
+			myUrl = myUrl + "&pageNo="+pageNo;
 			$("#list_info").attr({
-				"action": myUrl+"?"+item+".id="+id+"&pageNo="+pageNo
+				"action": myUrl
 			});
 			$("#list_info").submit();
 		}

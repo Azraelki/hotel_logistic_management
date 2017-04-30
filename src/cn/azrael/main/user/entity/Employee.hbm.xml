@@ -14,7 +14,7 @@
 		<property name="age" column="e_age" type="integer"  not-null="true"></property>
 		<property name="phoneNumber" column="e_phone_num" type="string" length="20" not-null="true"></property>
 		<property name="arrivedAt" column="e_arrived_at" type="double"  not-null="true"></property>
-		<many-to-one name="jobId" class="Job" column="j_id"></many-to-one>
+		<many-to-one name="jobId" class="Job" column="j_id" not-null="true"></many-to-one>
 	</class>
 
 </hibernate-mapping>

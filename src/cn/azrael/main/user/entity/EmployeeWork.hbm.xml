@@ -12,7 +12,7 @@
 		<property name="leaveNum" column="ew_leave" type="integer"  not-null="true"></property>
 		<property name="cleanNum" column="ew_clean" type="integer"  not-null="true"></property>
 		<property name="date" column="ew_date" type="double"   not-null="true"></property>
-		<many-to-one name="employeeId" class="Employee" column="e_id"></many-to-one>
+		<many-to-one name="employeeId" class="Employee" column="e_id" not-null="true"></many-to-one>
 	</class>
 
 </hibernate-mapping>
