@@ -2,8 +2,11 @@ package cn.azrael.test;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -99,5 +102,23 @@ public class TestUserModel {
 	public void testJob(){
 		JobService js = (JobService) ac.getBean("jobService");
 		js.findObjects();
+	}
+	@Test
+	public void testImportJob(){
+		JobService js = (JobService) ac.getBean("jobService");
+		Job job = new Job();
+		Map<Integer, String> m = new HashMap<Integer, String>();
+		m.put(1, "店长");
+		m.put(2, "经理");
+		m.put(3, "保洁");
+		m.put(4, "服务员");
+		m.put(5, "工程");
+		m.put(6, "厨师");
+		m.put(7, "保安");
+		for (int i = 1; i < 8; i++) {
+			job.setId(i);
+			job.setName(m.get(i));
+			js.save(job);
+		}
 	}
 }
