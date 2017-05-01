@@ -43,6 +43,11 @@ public class Linen implements Serializable{
 	public void setLinensInfos(Set<LinensInfo> linensInfos) {
 		this.linensInfos = linensInfos;
 	}
+	@Override
+	public String toString() {
+		return "Linen [id=" + id + ", employeeId=" + employeeId
+				+ ", linensInfos=" + linensInfos + ", date=" + date + "]";
+	}
 	
 	
 }

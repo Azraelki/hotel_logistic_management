@@ -78,6 +78,14 @@ public class LinensInfo implements Serializable{
 	public void setOweNum(Integer oweNum) {
 		this.oweNum = oweNum;
 	}
+
+	@Override
+	public String toString() {
+		return "LinensInfo [id=" + id + ", linenId=" + linenId
+				+ ", facilitieId=" + facilitieId + ", recNum=" + recNum
+				+ ", senNum=" + senNum + ", backWashNum=" + backWashNum
+				+ ", oweNum=" + oweNum + "]";
+	}
 	
 	
 }
