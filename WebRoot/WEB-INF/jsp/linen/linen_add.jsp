@@ -11,89 +11,109 @@
   	
   <body>
   	<form id="list_info" class="form-horizontal" action="" title="${path }/linen/linen_info.action" method="post" enctype="multipart/form-data">
-  	  <div class="row">
-  	  	<div class="col-xs-12">
-  	  		<div class="row from-group">
-  				<label for="eName" class="control-label col-xs-2">负责人</label>
-  				<div class="col-xs-3">
-  					<input class="form-control" type="text" id="eName" name="linen.employeeId.name" placeholder="请输入负责人姓名">
-  				</div>
-  				<label for="date" class="control-label col-xs-2">日&nbsp;期</label>
-  	  			<div class="col-xs-3">
-  	  				<input  class="form-control" type="date" id="date" name="temDate" readonly="readonly">
-  	  				<input class="form-control" type="hidden" name="linen.date" id="lDate">
-  	  			</div>
-  	  		</div>
-  	  	</div>
-  	  </div>
+		<div class="row from-group">
+			<label for="eName" class="control-label col-xs-1">负责人</label>
+			<div class="col-xs-3">
+				<input class="form-control" type="text" id="eName" name="linen.employeeId.name" placeholder="请输入负责人姓名">
+			</div>
+			<label for="date" class="control-label col-xs-1">日&nbsp;期</label>
+			<div class="col-xs-3">
+				<input  class="form-control" type="date" id="date" name="temDate" >
+				<input class="form-control" type="hidden" name="linen.date" id="lDate">
+			</div>
+			<div class="col-xs-2">
+				<a  class="btn btn-default"  id="submit" >提交洗涤单</a>
+			</div>
+			<span class="col-xs-2">${message }</span>
+		</div>
     <table class="table table-striped table-hover ">
 	  <thead>
-	    <tr>
-	      <th>列数</th>
-	      <th>布草名称</th>
-	      <th>收回数量</th>
-	      <th>送出数量</th>
-	      <th>回洗数量</th>
-	      <th>欠收数量</th>
-	      <th>操作</th>
+	    <tr class="row">
+	      <th class="col-xs-2">布草名称</th>
+	      <th class="col-xs-2">收回数量</th>
+	      <th class="col-xs-2">送出数量</th>
+	      <th class="col-xs-2">回洗数量</th>
+	      <th class="col-xs-2">欠收数量</th>
+	      <th class="col-xs-2">操作</th>
 	    </tr>
 	  </thead>
-	  <tbody>
-	  	<c:forEach var="item" items="${linen.linensInfos }" varStatus="status">
-		    <tr>
-      		  <td>${status.index+1 }</td>
-		      <td>${item.facilitieId.name }</td>
-		      <td>${item.recNum }</td>
-		      <td>${item.senNum }</td>
-		      <td>${item.backWashNum }</td>
-		      <td>${item.oweNum }</td>
-		      <td>
-		      	<a href="editUI" title="${item.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">编辑</a>
-		      	<a href="delete" title="${item.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">删除</a>
-		      </td>
-		    </tr>
-	    </c:forEach>
+	  <tbody id="dataTarget">
+	  	<tr class="row">
+	  		<td class="col-xs-2">
+	  			<select name="linensInfo[0].facilitieId.id" class="form-control input-sm">
+					<option value="${0 }">请选择</option>
+					<c:forEach var="item" items="${facilitieList}">
+						<option value="${item.id }">${item.name }</option>
+					</c:forEach>
+				</select>
+	  		</td>
+	  		<td class="col-xs-2"><input type="number" name="linensInfo[0].recNum" class="form-control input-sm"></td>
+	  		<td class="col-xs-2"><input type="number" name="linensInfo[0].senNum" class="form-control input-sm"></td>
+	  		<td class="col-xs-2"><input type="number" name="linensInfo[0].backWashNum" class="form-control input-sm"></td>
+	  		<td class="col-xs-2"><input type="number" name="linensInfo[0].oweNum" class="form-control input-sm"></td>
+	  		<td class="col-xs-2">
+	  			<a title="delete" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">删除</a> 
+	  			<a title="confirm" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">确认</a> 
+	  		</td>
+	  	</tr>
 	  </tbody>
 	</table>
 	</form>
-	<div id="deleteDialog" class="modal">
-		<div class="modal-dialog">
-			<div class="modal-content">
-				<div class="modal-header">
-					<h4 class="modal-title" id="dialogTitle">
-						操作提示
-					</h4>
-				</div>
-				<div class="modal-body">
-					你希望执行删除操作吗？
-				</div>
-				<div class="modal-footer">
-					<button name="confirm" type="button" class="btn btn-default">取消
-					</button>
-					<button id="confirm" name="confirm" type="button" class="btn btn-primary">
-						确认删除
-					</button>
-				</div>
-			</div><!-- /.modal-content -->
-		</div><!-- /.modal -->
-	</div>
 	<script>
 		$(function(){
-			deleteAndEditInfo("linensInfo");
-			spanDateTransplate();
+			// 删除要删除的条目 
+			$("a[title='delete']").click(function(e){
+				e.preventDefault();
+				//判断是否为确认过的信息
+				if($("input:first",$(this).parent().parent()).prop("readonly")){
+					$(this).parent().parent().remove();
+				}else{
+					alert("只能删除已确认过的信息！");
+					return;
+				}
+			});
+			//为对象数组的下标维护一个增长的值
+			var myFlag = 1;
+			//确认信息
+			$("a[title='confirm']").click(function(e){
+				e.preventDefault();
+				//若是已经确认过的则不操作
+				if($(this).hasClass("disabled")){
+					return;
+				}
+				//获得空白行
+				var $originRow = $("#dataTarget tr:last").clone(true);
+				$("input",$originRow).val(null);
+				//修改input和select的name属性的对象数组下标
+				$("input",$originRow).each(function(){
+					$(this).attr("name",$(this).attr("name").replace(/\d/,myFlag));
+				});
+				$("select",$originRow).attr("name",$("select",$originRow).attr("name").replace(/\d/,myFlag));
+				//自增长值
+				myFlag++;
+				//将当前点击的行按钮设置为不可用
+				$(this).addClass("disabled");
+				//设置当前行不可编辑
+				$("input",$(this).parent().parent()).prop("readonly",true);
+				$("select",$(this).parent().parent()).prop("disabled",true);
+				//将空白行追加到tbody的内部
+				$("#dataTarget").append($originRow);
+			});
+			$("#submit").click(function(e){
+				e.preventDefault();
+				//将无用空白行去除
+				$("#dataTarget tr:last").remove();
+				$("#list_info").attr({
+					"action": $("#list_info").attr("title").replace("_info","_add")
+				});
+				//提交时修改select的状态，否则数据不会提交
+				$("#dataTarget select").removeAttr("disabled");
+				$("#list_info").submit();
+			});
 			changeTogether("date", "lDate");
 			if($("#lDate").val()>0){
 				$("#date").val(translateRealToDate($("#lDate").val()));
 			}
-			$("#back").click(function(e){
-				e.preventDefault();
-				var url = $("#list_info").attr("title");
-				$("#list_info").attr({
-					"action": url.replace("linensinfo_info","linen_info")+"?pageNo="+$("#pageNo").val()
-				});
-				//alert($("#list_info").attr("action"));
-				$("#list_info").submit();
-			});
 		});
 	</script>
   </body>

@@ -3,7 +3,7 @@
           "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
           "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-    <package name="linen-action" namespace="/linen" extends="struts-default">
+    <package name="linen-action" namespace="/linen" extends="json-default">
     	
     	<action name="linen_*" class="cn.azrael.main.linen.action.LinenAction" method="{1}">
     		<result name="default">/WEB-INF/jsp/linen/linen_main.jsp</result>

@@ -24,8 +24,20 @@
     					<input type="hidden" name="pageNo" value="${pageNo }">
     					<input type="hidden" name="linensInfo.id" value="${linensInfo.id }">
     					<input type="hidden" name="linensInfo.linenId.id" value="${linensInfo.linenId.id }">
-    					<input type="hidden" name="linensInfo.facilitieId.id" value="${linensInfo.facilitieId.id }">
-    					<input type="text" id="fName" name="linensInfo.facilitieId.name" value="${linensInfo.facilitieId.name }" class="form-control" placeholder="请输入布草名称">
+    					<%-- <input type="hidden" name="linensInfo.facilitieId.id" value="${linensInfo.facilitieId.id }"> --%>
+    					<select name="linensInfo.facilitieId.id" class="form-control">
+    						<c:forEach var="item" items="${facilitieList}">
+    							<c:choose>
+	    							<c:when test="${item.id == linensInfo.facilitieId.id }">
+	    								<option value="${item.id }" selected="selected">${item.name }</option>
+	    							</c:when>
+	    							<c:otherwise>
+	    								<option value="${item.id }">${item.name }</option>
+	    							</c:otherwise>
+	    						</c:choose>
+    						</c:forEach>
+    					</select>
+    					<%-- <input type="text" id="fName" name="linensInfo.facilitieId.name" value="${linensInfo.facilitieId.name }" class="form-control" placeholder="请输入布草名称"> --%>
     				</div>
     				<span class="col-xs-6"></span>
     			</div>

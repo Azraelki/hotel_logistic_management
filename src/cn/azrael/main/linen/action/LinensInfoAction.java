@@ -5,16 +5,25 @@ import java.util.List;
 import javax.annotation.Resource;
 
 
+
+
+
+import com.opensymphony.xwork2.ActionContext;
+
 import cn.azrael.main.core.action.BaseAction;
+import cn.azrael.main.facilitie.service.FacilitieService;
 import cn.azrael.main.linen.entity.Linen;
 import cn.azrael.main.linen.entity.LinensInfo;
 import cn.azrael.main.linen.service.LinenService;
 import cn.azrael.main.linen.service.LinensInfoService;
 import cn.azrael.main.user.entity.Employee;
+import cn.azrael.main.user.service.JobService;
 
 public class LinensInfoAction extends BaseAction{
 	@Resource
 	private LinensInfoService linensInfoService;
+	@Resource
+	private FacilitieService facilitieService;
 	@Resource
 	private LinenService linenService;
 	private List<LinensInfo> linensInfoList;
@@ -25,12 +34,14 @@ public class LinensInfoAction extends BaseAction{
 	public String execute(){
 		return "default";
 	}
-	
+
 	/**
 	 * 编辑界面
 	 */
 	public String editUI(){
 		System.out.println(pageNo);
+		//加载布草种类列表
+		ActionContext.getContext().getContextMap().put("facilitieList", facilitieService.findByType(1));
 		if(linensInfo!=null && linensInfo.getId()!=null){
 			linensInfo = linensInfoService.findObjectById(linensInfo.getId());
 		}
