@@ -64,10 +64,16 @@
     				<label for="jName" class="col-xs-2 control-label">职&nbsp;务</label>
     				<div class="col-xs-4">
     					<select id="jName" name="employee.jobId.id"  class="form-control" >
-    						<option value="0">请选择</option>
-    						<option	value="1">店长</option>
-    						<option	value="2">经理</option>
-    						<option	value="3">保洁员</option>
+    						<c:forEach var="item" items="${jobList}">
+    							<c:choose>
+	    							<c:when test="${item.id == employee.jobId.id }">
+	    								<option value="${item.id }" selected="selected">${item.name }</option>
+	    							</c:when>
+	    							<c:otherwise>
+	    								<option value="${item.id }">${item.name }</option>
+	    							</c:otherwise>
+	    						</c:choose>
+    						</c:forEach>
     					</select>
     				</div>
     				<span class="col-xs-6"></span>

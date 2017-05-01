@@ -13,11 +13,14 @@ import cn.azrael.main.core.action.BaseAction;
 import cn.azrael.main.core.util.QueryHelper;
 import cn.azrael.main.user.entity.Employee;
 import cn.azrael.main.user.service.EmployeeService;
+import cn.azrael.main.user.service.JobService;
 
 
 public class EmployeeAction extends BaseAction{
 	@Resource
 	private EmployeeService employeeService;
+	@Resource
+	private JobService jobService;
 	private List<Employee> employeeList;
 	private Employee employee;
 	private String message;
@@ -49,6 +52,8 @@ public class EmployeeAction extends BaseAction{
 	 * 添加员工
 	 */
 	public String add() throws Exception{
+		//加载职务信息列表
+		ActionContext.getContext().getContextMap().put("jobList", jobService.findObjects());
 		if(employee!=null){
 			try {
 				if(employeeService.findByName(employee.getName())!=null){
@@ -68,6 +73,8 @@ public class EmployeeAction extends BaseAction{
 	 * 编辑员工页面
 	 */
 	public String editUI(){
+		//加载职务信息列表
+		ActionContext.getContext().getContextMap().put("jobList", jobService.findObjects());
 		if(employee!=null && employee.getId()!=null){
 			employee = employeeService.findObjectById(employee.getId());
 		}
