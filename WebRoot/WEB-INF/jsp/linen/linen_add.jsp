@@ -26,38 +26,40 @@
 			</div>
 			<span class="col-xs-2">${message }</span>
 		</div>
-    <table class="table table-striped table-hover ">
-	  <thead>
-	    <tr class="row">
-	      <th class="col-xs-2">布草名称</th>
-	      <th class="col-xs-2">收回数量</th>
-	      <th class="col-xs-2">送出数量</th>
-	      <th class="col-xs-2">回洗数量</th>
-	      <th class="col-xs-2">欠收数量</th>
-	      <th class="col-xs-2">操作</th>
-	    </tr>
-	  </thead>
-	  <tbody id="dataTarget">
-	  	<tr class="row">
-	  		<td class="col-xs-2">
-	  			<select name="linensInfo[0].facilitieId.id" class="form-control input-sm">
-					<option value="${0 }">请选择</option>
-					<c:forEach var="item" items="${facilitieList}">
-						<option value="${item.id }">${item.name }</option>
-					</c:forEach>
-				</select>
-	  		</td>
-	  		<td class="col-xs-2"><input type="number" name="linensInfo[0].recNum" class="form-control input-sm"></td>
-	  		<td class="col-xs-2"><input type="number" name="linensInfo[0].senNum" class="form-control input-sm"></td>
-	  		<td class="col-xs-2"><input type="number" name="linensInfo[0].backWashNum" class="form-control input-sm"></td>
-	  		<td class="col-xs-2"><input type="number" name="linensInfo[0].oweNum" class="form-control input-sm"></td>
-	  		<td class="col-xs-2">
-	  			<a title="delete" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">删除</a> 
-	  			<a title="confirm" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">确认</a> 
-	  		</td>
-	  	</tr>
-	  </tbody>
-	</table>
+	<div style="height: 400px;overflow-y: auto;">
+	    <table class="table table-striped table-hover ">
+		  <thead>
+		    <tr class="row">
+		      <th class="col-xs-2">布草名称</th>
+		      <th class="col-xs-2">收回数量</th>
+		      <th class="col-xs-2">送出数量</th>
+		      <th class="col-xs-2">回洗数量</th>
+		      <th class="col-xs-2">欠收数量</th>
+		      <th class="col-xs-2">操作</th>
+		    </tr>
+		  </thead>
+		  <tbody id="dataTarget">
+		  	<tr class="row">
+		  		<td class="col-xs-2">
+		  			<select name="linensInfo[0].facilitieId.id" class="form-control input-sm">
+						<option value="${0 }">请选择</option>
+						<c:forEach var="item" items="${facilitieList}">
+							<option value="${item.id }">${item.name }</option>
+						</c:forEach>
+					</select>
+		  		</td>
+		  		<td class="col-xs-2"><input type="number" name="linensInfo[0].recNum" class="form-control input-sm"></td>
+		  		<td class="col-xs-2"><input type="number" name="linensInfo[0].senNum" class="form-control input-sm"></td>
+		  		<td class="col-xs-2"><input type="number" name="linensInfo[0].backWashNum" class="form-control input-sm"></td>
+		  		<td class="col-xs-2"><input type="number" name="linensInfo[0].oweNum" class="form-control input-sm"></td>
+		  		<td class="col-xs-2">
+		  			<a title="delete" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">删除</a> 
+		  			<a title="confirm" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">确认</a> 
+		  		</td>
+		  	</tr>
+		  </tbody>
+		</table>
+	</div>
 	</form>
 	<script>
 		$(function(){
