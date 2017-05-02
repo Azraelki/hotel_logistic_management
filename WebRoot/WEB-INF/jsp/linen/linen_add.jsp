@@ -61,12 +61,32 @@
 	</form>
 	<script>
 		$(function(){
+			function createEmptyRow(){
+				//获得空白行
+				var $originRow = $("#dataTarget tr:last").clone(true);
+				$("input",$originRow).val(null);
+				//修改input和select的name属性的对象数组下标
+				$("input",$originRow).each(function(){
+					$(this).attr("name",$(this).attr("name").replace(/\d/,myFlag));
+				});
+				$("select",$originRow).attr("name",$("select",$originRow).attr("name").replace(/\d/,myFlag));
+				//自增长值
+				myFlag++;
+				//将空白行追加到tbody的内部
+				$("#dataTarget").append($originRow);
+			}
 			// 删除要删除的条目 
 			$("a[title='delete']").click(function(e){
 				e.preventDefault();
 				//判断是否为确认过的信息
 				if($("input:first",$(this).parent().parent()).prop("readonly")){
 					$(this).parent().parent().remove();
+					var $tr = $("#dataTarget tr:last");
+					if($("select:first",$tr).prop("disabled")){
+						$("select",$tr).prop("disabled",false);
+						$("input",$tr).prop("readonly",false);
+						$("a",$tr).removeClass("disabled");
+					}
 				}else{
 					alert("只能删除已确认过的信息！");
 					return;
@@ -81,23 +101,14 @@
 				if($(this).hasClass("disabled")){
 					return;
 				}
-				//获得空白行
-				var $originRow = $("#dataTarget tr:last").clone(true);
-				$("input",$originRow).val(null);
-				//修改input和select的name属性的对象数组下标
-				$("input",$originRow).each(function(){
-					$(this).attr("name",$(this).attr("name").replace(/\d/,myFlag));
-				});
-				$("select",$originRow).attr("name",$("select",$originRow).attr("name").replace(/\d/,myFlag));
-				//自增长值
-				myFlag++;
+				if($("#dataTarget tr").size()<7)
+					createEmptyRow();
 				//将当前点击的行按钮设置为不可用
 				$(this).addClass("disabled");
 				//设置当前行不可编辑
 				$("input",$(this).parent().parent()).prop("readonly",true);
 				$("select",$(this).parent().parent()).prop("disabled",true);
 				//将空白行追加到tbody的内部
-				$("#dataTarget").append($originRow);
 			});
 			$("#submit").click(function(e){
 				e.preventDefault();
