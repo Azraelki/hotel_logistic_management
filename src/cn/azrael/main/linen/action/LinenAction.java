@@ -207,7 +207,7 @@ public class LinenAction extends BaseAction{
 		return "list";
 	}
 	/**
-	 * 批量删除员工
+	 * 批量删除
 	 */
 	public String deleteSelected() throws Exception{
 		if(selectedRow!=null){
