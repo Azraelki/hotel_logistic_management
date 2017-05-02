@@ -20,4 +20,6 @@
     <include file="cn/azrael/main/user/config/user-struts.xml"></include>
     <!-- linen -->
     <include file="cn/azrael/main/linen/config/linen-struts.xml"></include>
+    <!-- purchase -->
+    <include file="cn/azrael/main/purchase/config/purchase-struts.xml"></include>
 </struts>
