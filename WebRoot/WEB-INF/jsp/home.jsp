@@ -6,7 +6,7 @@
     application.setAttribute("path", path);
 %>
 <!DOCTYPE html>
-<html>
+<html style="overflow-y: hidden;">
   <head>
   	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>酒店后勤管理系统</title>
