@@ -54,7 +54,7 @@ public class TestLinen {
 	}
 	@Test
 	public void testLinenQuery() throws Exception {
-		Linen l = ls.findObjectById("402868815ba2bfaf015ba2bfb33a0006");
+		Linen l = ls.findObjectById("402880eb5bbcd6e6015bbcd6e89b0000");
 		System.out.println(l.getLinensInfos());
 	}
 	@Test
