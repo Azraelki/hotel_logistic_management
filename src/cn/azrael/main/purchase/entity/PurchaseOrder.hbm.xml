@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.azrael.main.purchase.entity">
+	<class name="PurchaseOrder" table="purchase_order">
+		<id name="id" type="string">
+			<column name="po_id" length="32"></column>
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="status" column="po_status" type="integer" not-null="true"></property>
+		<property name="date" column="po_date" type="double" not-null="true"></property>
+		<many-to-one name="employeeId" class="cn.azrael.main.user.entity.Employee" column="e_id" not-null="true"></many-to-one>
+		<set name="purchaseInfos" cascade="save-update,delete" table="purchase_info">
+			<key column="po_id" ></key>
+			<one-to-many class="PurchaseInfo"/>
+		</set>
+	</class>
+
+</hibernate-mapping>
+
+
+

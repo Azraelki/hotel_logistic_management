@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+          "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="purchase-action" namespace="/purchase" extends="json-default">
+    	
+    	<!-- <action name="purchase_*" class="cn.azrael.main.linen.action.LinenAction" method="{1}">
+    		<result name="default">/WEB-INF/jsp/linen/linen_main.jsp</result>
+    		<result name="list" type="redirectAction">
+    			<param name="actionName">linen_info</param>
+    			<param name="pageNo">${pageNo}</param>
+    		</result>
+    		<result name="{1}">/WEB-INF/jsp/linen/linen_{1}.jsp</result>
+    	</action>
+    	<action name="linensinfo_*" class="cn.azrael.main.linen.action.LinensInfoAction" method="{1}">
+    		<result name="list" type="redirectAction">
+    			<param name="actionName">linen_detail</param>
+    			<param name="pageNo">${pageNo}</param>
+    			<param name="linen.id">${linen.id}</param>
+    		</result>
+    		<result name="{1}">/WEB-INF/jsp/linen/linensinfo_{1}.jsp</result>
+    	</action> -->
+    </package>
+</struts>
