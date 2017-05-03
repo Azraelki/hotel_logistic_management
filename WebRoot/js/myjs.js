@@ -3,6 +3,10 @@
 function changeTogether(dateInputId,hiddenInputId){
 	$("#"+dateInputId).change(function(){
 		var date = translateDateToReal($(this).val());
+		//判断是否为NaN，date类型的input点击叉号会出现值为NaN，后台无法识别
+		if(isNaN(date)){
+			date = null;
+		}
 		$("#"+hiddenInputId).val(date);
 	});
 	$("#"+hiddenInputId).change(function(){
