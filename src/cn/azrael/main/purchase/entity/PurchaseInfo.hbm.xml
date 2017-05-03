@@ -10,6 +10,8 @@
 			<generator class="uuid.hex"></generator>
 		</id>
 		<property name="purchaseNum" column="pi_num" type="integer" not-null="true"></property>
+		<property name="price" column="pi_price" type="double" not-null="true"></property>
+		<property name="total" column="pi_total" type="double" not-null="true"></property>
 		<many-to-one name="facilitieId" class="cn.azrael.main.facilitie.entity.Facilitie" column="f_id" not-null="true"></many-to-one>
 		<many-to-one name="purchaseOrderId" class="PurchaseOrder" column="po_id" not-null="true"></many-to-one>
 	</class>

@@ -11,6 +11,8 @@ public class PurchaseInfo implements Serializable{
 	private PurchaseOrder purchaseOrderId;
 	private Facilitie facilitieId;
 	private Integer purchaseNum;
+	private Double price;
+	private Double total;
 	public PurchaseInfo() {
 	}
 	public String getId() {
@@ -36,6 +38,18 @@ public class PurchaseInfo implements Serializable{
 	}
 	public void setPurchaseNum(Integer purchaseNum) {
 		this.purchaseNum = purchaseNum;
+	}
+	public Double getPrice() {
+		return price;
+	}
+	public void setPrice(Double price) {
+		this.price = price;
+	}
+	public Double getTotal() {
+		return total;
+	}
+	public void setTotal(Double total) {
+		this.total = total;
 	}
 	
 	
