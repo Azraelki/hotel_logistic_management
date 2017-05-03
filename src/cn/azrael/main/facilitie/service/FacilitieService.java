@@ -7,4 +7,5 @@ import cn.azrael.main.facilitie.entity.Facilitie;
 
 public interface FacilitieService extends BaseService<Facilitie>{
 	public List<Facilitie> findByType(int type);
+	public List<Facilitie> findByName(String name);
 }

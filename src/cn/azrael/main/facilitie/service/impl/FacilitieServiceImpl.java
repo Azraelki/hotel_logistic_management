@@ -25,4 +25,10 @@ public class FacilitieServiceImpl extends BaseServiceImpl<Facilitie> implements 
 		queryHelper.addCondition("f.type=?", type);
 		return facilitieDao.findObjects(queryHelper);
 	}
+	@Override
+	public List<Facilitie> findByName(String name) {
+		QueryHelper queryHelper = new QueryHelper(Facilitie.class, "f");
+		queryHelper.addCondition("f.name like ?", name);
+		return facilitieDao.findObjects(queryHelper);
+	}
 }
