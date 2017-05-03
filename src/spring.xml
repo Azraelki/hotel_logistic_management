@@ -62,7 +62,7 @@
 			<tx:method name="load*" read-only="true" />
 			<tx:method name="list*" read-only="true" />
 			<tx:method name="search*" read-only="true" />
-			<tx:method name="*" rollback-for="Throwable" />
+			<tx:method name="*" rollback-for="Throwable" propagation="REQUIRED"/>
 		</tx:attributes>
 	</tx:advice>
 	
