@@ -49,6 +49,28 @@ public class QueryHelper {
 		}
 	}
 	/**
+	 * 构造where子句
+	 * @param condition 查询条件语句：例如：i.title like ?
+	 * @param params 查询语句中对应 ？的查询参数 例如：%标题%
+	 */
+	public void addOrCondition(String condition,Object... params){
+		if(whereClause.length() > 1){//非第一个查询条件
+			whereClause += " OR " +condition;
+		}else{//第一个查询条件
+			whereClause += " WHERE " + condition;
+		}
+		
+		//设置查询条件值到查询条件集合中
+		if(parameters == null){
+			parameters = new ArrayList<Object>();
+		}
+		if(params != null){
+			for(Object param : params){
+				parameters.add(param);
+			}
+		}
+	}
+	/**
 	 * 构造order by子句
 	 * @param property 排序属性，如：i.createTime
 	 * @param order 排序顺序，如：DESC 或者 ASC
