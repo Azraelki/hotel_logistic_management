@@ -10,6 +10,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 	<bean id="purchaseOrderDao" class="cn.azrael.main.purchase.dao.impl.PurchaseOrderImpl" parent="baseDao"></bean>
 	<bean id="purchaseInfoDao" class="cn.azrael.main.purchase.dao.impl.PurchaseInfoImpl" parent="baseDao"></bean>
+	<bean id="facilitieUseDao" class="cn.azrael.main.purchase.dao.impl.FacilitieUseDaoImpl" parent="baseDao"></bean>
 	<!--  配置注解扫描信息,扫描service-->
 	<context:component-scan base-package="cn.azrael.main.purchase.service.impl"></context:component-scan>
 	

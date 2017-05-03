@@ -28,7 +28,7 @@ public class FacilitieServiceImpl extends BaseServiceImpl<Facilitie> implements 
 	@Override
 	public List<Facilitie> findByName(String name) {
 		QueryHelper queryHelper = new QueryHelper(Facilitie.class, "f");
-		queryHelper.addCondition("f.name like ?", name);
+		queryHelper.addCondition("f.name like ?", "%"+name+"%");
 		return facilitieDao.findObjects(queryHelper);
 	}
 }

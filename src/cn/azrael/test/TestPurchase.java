@@ -7,6 +7,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import cn.azrael.main.core.util.QueryHelper;
 import cn.azrael.main.facilitie.service.FacilitieService;
 import cn.azrael.main.purchase.dao.PurchaseOrderDao;
 import cn.azrael.main.purchase.entity.FacilitieUse;
@@ -68,5 +69,11 @@ public class TestPurchase {
 		PurchaseOrderDao pd =  (PurchaseOrderDao) ac.getBean("purchaseOrderDao");
 		PurchaseOrder purchaseOrder = pd.findObjects().get(0);
 		System.out.println(purchaseOrder.getPurchaseInfos());
+	}
+	@Test
+	public void testQueryPurchaseInfo()throws Exception{
+		QueryHelper queryHelper = new QueryHelper(PurchaseInfo.class, "pi");
+		queryHelper.addCondition("pi.purchaseOrderId.id=?", "402880eb5bcd3a3a015bcd3a3df10000");
+		pis.getPageResult(queryHelper, 1, 7);
 	}
 }
