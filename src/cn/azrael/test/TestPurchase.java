@@ -9,8 +9,10 @@ import org.springframework.context.support.ClassPathXmlApplicationContext;
 
 import cn.azrael.main.facilitie.service.FacilitieService;
 import cn.azrael.main.purchase.dao.PurchaseOrderDao;
+import cn.azrael.main.purchase.entity.FacilitieUse;
 import cn.azrael.main.purchase.entity.PurchaseInfo;
 import cn.azrael.main.purchase.entity.PurchaseOrder;
+import cn.azrael.main.purchase.service.FacilitieUseService;
 import cn.azrael.main.purchase.service.PurchaseInfoService;
 import cn.azrael.main.purchase.service.PurchaseOrderService;
 import cn.azrael.main.user.service.EmployeeService;
@@ -22,6 +24,7 @@ public class TestPurchase {
 	private PurchaseInfoService pis;
 	private EmployeeService es;
 	private FacilitieService fs;
+	private FacilitieUseService fus;
 	@Before
 	public void loadCtx(){
 		ac = new ClassPathXmlApplicationContext(new String[] {"classpath:spring.xml"});
@@ -29,6 +32,7 @@ public class TestPurchase {
 		pis = (PurchaseInfoService) ac.getBean("purchaseInfoService");
 		es = (EmployeeService) ac.getBean("employeeService");
 		fs = (FacilitieService) ac.getBean("facilitieService");
+		fus = (FacilitieUseService) ac.getBean("facilitieUseService");
 	}
 	@Test
 	public void testPurchaseAndInfoSave() throws Exception {
@@ -47,6 +51,17 @@ public class TestPurchase {
 			pi.setTotal(pi.getPrice()*pi.getPurchaseNum());
 			pis.save(pi);
 		}
+	}
+	@Test
+	public void testFacilitieUseAndInfoSave() throws Exception {
+		FacilitieUse fu = new FacilitieUse();
+		fu.setDate(new Date().getTime()/1000.0);
+		for (int i = 0; i < 3; i++) {
+			fu.setFacilitieId(fs.findObjects().get(i));
+			fu.setUseNum(10+i);
+			fus.save(fu);
+		}
+		System.out.println(fus.findObjects().get(0));
 	}
 	@Test
 	public void testQuery()throws Exception{
