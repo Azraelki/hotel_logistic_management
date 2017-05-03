@@ -43,6 +43,8 @@ public class TestPurchase {
 			pi.setFacilitieId(fs.findObjects().get(i));
 			pi.setPurchaseNum(100+i);
 			pi.setPurchaseOrderId(po);
+			pi.setPrice(i+1.0);
+			pi.setTotal(pi.getPrice()*pi.getPurchaseNum());
 			pis.save(pi);
 		}
 	}
