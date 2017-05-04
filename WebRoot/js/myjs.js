@@ -18,7 +18,8 @@ function changeTogether(dateInputId,hiddenInputId){
 function spanDateTransplate(){
 	$("span[title='date']").text(function(){
 		var date = $(this).find("input:first").val();
-		return translateRealToDate(date);
+		if(date > 0)
+			return translateRealToDate(date);
 	});
 }
 //操作信息
