@@ -19,7 +19,7 @@ public interface BaseService<T>{
 	//查找列表
 	public List<T> findObjects();
 	//条件查询实体列表--查询助手queryHelper
-		public List<T> findObjects(QueryHelper queryHelper);
-		//分页条件查询实体列表--查询助手queryHelper
-		public PageResult getPageResult(QueryHelper queryHelper, int pageNo, int pageSize);
+	public List<T> findObjects(QueryHelper queryHelper);
+	//分页条件查询实体列表--查询助手queryHelper
+	public PageResult getPageResult(QueryHelper queryHelper, int pageNo, int pageSize);
 }
