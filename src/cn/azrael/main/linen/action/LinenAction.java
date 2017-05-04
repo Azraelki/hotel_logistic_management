@@ -1,21 +1,11 @@
 package cn.azrael.main.linen.action;
 
-import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletOutputStream;
-import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.apache.jasper.tagplugins.jstl.core.Set;
-import org.apache.log4j.pattern.LineSeparatorPatternConverter;
-import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 
@@ -26,8 +16,6 @@ import cn.azrael.main.facilitie.service.FacilitieService;
 import cn.azrael.main.linen.entity.Linen;
 import cn.azrael.main.linen.entity.LinensInfo;
 import cn.azrael.main.linen.service.LinenService;
-import cn.azrael.main.linen.service.LinensInfoService;
-import cn.azrael.main.linen.service.impl.LinensInfoServiceImpl;
 import cn.azrael.main.user.service.EmployeeService;
 
 public class LinenAction extends BaseAction{
@@ -35,8 +23,6 @@ public class LinenAction extends BaseAction{
 	private LinenService linenService;
 	@Resource
 	private FacilitieService facilitieService;
-	@Resource
-	private LinensInfoService linensInfoService;
 	@Resource
 	private EmployeeService employeeService;
 	private Linen linen;
@@ -115,13 +101,8 @@ public class LinenAction extends BaseAction{
 		ActionContext.getContext().getContextMap().put("facilitieList", facilitieService.findByType(1));
 		try {
 			if(facilitie!=null && facilitie.getId()!=null){
-				int badNum = 0;
 				if(facilitie.getBadNum() > 0){
-					badNum = facilitie.getBadNum();
-					facilitie = facilitieService.findObjectById(facilitie.getId());
-					facilitie.setBadNum((facilitie.getBadNum()+badNum));
-					facilitie.setNormalNum(facilitie.getNormalNum()-badNum);
-					facilitieService.update(facilitie);
+					facilitieService.invalidAndUpdate(facilitie);
 					message = "提交成功！";
 				}else{
 					message = "请核查你填的数据！";
@@ -151,16 +132,7 @@ public class LinenAction extends BaseAction{
 					//获取负责人的信息
 					linen.setEmployeeId(employeeService.findByName(linen.getEmployeeId().getName()));
 					if(linen.getEmployeeId()!=null){
-						//保存清单
-						linenService.save(linen);
-						//保存清单详细
-						for(LinensInfo ls: linensInfo){
-							if(ls == null){
-								continue;
-							}
-							ls.setLinenId(linen);
-							linensInfoService.save(ls);
-						}
+						linenService.saveLinenAndLinensInfo(linen, linensInfo);
 						message = "添加成功!";
 					}else{
 						message = "没有此员工!";

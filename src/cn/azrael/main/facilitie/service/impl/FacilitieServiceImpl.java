@@ -31,4 +31,14 @@ public class FacilitieServiceImpl extends BaseServiceImpl<Facilitie> implements 
 		queryHelper.addCondition("f.name like ?", "%"+name+"%");
 		return facilitieDao.findObjects(queryHelper);
 	}
+	@Override
+	public void invalidAndUpdate(Facilitie facilitie) {
+		int badNum = 0;
+		badNum = facilitie.getBadNum();
+		facilitie = facilitieDao.findObjectById(facilitie.getId());
+		facilitie.setBadNum((facilitie.getBadNum()+badNum));
+		facilitie.setNormalNum(facilitie.getNormalNum()-badNum);
+		facilitieDao.update(facilitie);
+	}
+	
 }
