@@ -17,7 +17,6 @@ import cn.azrael.main.linen.entity.LinensInfo;
 import cn.azrael.main.linen.service.LinenService;
 import cn.azrael.main.linen.service.LinensInfoService;
 import cn.azrael.main.user.entity.Employee;
-import cn.azrael.main.user.service.JobService;
 
 public class LinensInfoAction extends BaseAction{
 	@Resource
