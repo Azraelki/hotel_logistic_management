@@ -43,12 +43,6 @@ public class PurchaseOrderAction extends BaseAction{
 		QueryHelper queryHelper = new QueryHelper(PurchaseOrder.class, "po");
 		try {
 			System.out.println(pageNo);
-			if(purchaseOrder!=null){
-				/*if(StringUtils.isNotBlank(purchaseOrdersInfo.getName())){
-					purchaseOrdersInfo.setName(URLDecoder.decode(purchaseOrdersInfo.getName(), "utf-8"));
-					queryHelper.addCondition("e.name like ?", "%"+purchaseOrdersInfo.getName()+"%");
-				}*/
-			}
 			if(beginDate != null){
 				System.out.println(beginDate);
 				queryHelper.addCondition("po.date >= ?", beginDate);
@@ -64,6 +58,21 @@ public class PurchaseOrderAction extends BaseAction{
 		}
 		
 		return "info";
+	}
+	/**
+	 * 修改订单状态
+	 */
+	public String change() throws Exception{
+		QueryHelper queryHelper = new QueryHelper(PurchaseOrder.class, "po");
+		try {
+			System.out.println(pageNo);
+			queryHelper.addCondition("po.status!=?", 1);
+			queryHelper.addOrderByProperty("po.date", QueryHelper.ORDER_BY_DESC);
+			pageResult = purchaseOrderService.getPageResult(queryHelper, this.getPageNo(), this.getPageSize());
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+		return "change";
 	}
 	/**
 	 * 清单详情
@@ -131,28 +140,33 @@ public class PurchaseOrderAction extends BaseAction{
 	public String editUI(){
 		if(purchaseOrder!=null && purchaseOrder.getId()!=null){
 			purchaseOrder = purchaseOrderService.findObjectById(purchaseOrder.getId());
+			System.out.println(purchaseOrder.getEmployeeId());
 		}
 		return "editUI";
 	}
 	/**
 	 * 编辑
 	 */
-	public String edit(){
+	public String edit() throws Exception{
 		try {
 			if(purchaseOrder!=null){
-				purchaseOrderService.update(purchaseOrder);
+				if(purchaseOrder.getStatus() == 1){
+					purchaseOrderService.changeAndUpdate(purchaseOrder);
+				}
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return "list";
+		return "change";
 	}
 	/**
 	 * 删除当前清单和清单中的数据
 	 */
 	public String delete() throws Exception{
 		try {
-			purchaseOrderService.delete(purchaseOrder.getId());
+			if(purchaseOrder!=null){
+				purchaseOrderService.deleteAndUpdate(purchaseOrder);
+			}
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
@@ -165,7 +179,8 @@ public class PurchaseOrderAction extends BaseAction{
 		if(selectedRow!=null){
 			for(String s:selectedRow){
 				try {
-					purchaseOrderService.delete(s);
+					purchaseOrderService.findObjectById(s);
+					purchaseOrderService.deleteAndUpdate(purchaseOrder);
 				} catch (Exception e) {
 					throw new Exception(e.getMessage());
 				}

@@ -7,6 +7,7 @@ import javax.annotation.Resource;
 import com.opensymphony.xwork2.ActionContext;
 
 import cn.azrael.main.core.action.BaseAction;
+import cn.azrael.main.core.util.QueryHelper;
 import cn.azrael.main.facilitie.service.FacilitieService;
 import cn.azrael.main.purchase.entity.PurchaseInfo;
 import cn.azrael.main.purchase.entity.PurchaseOrder;
@@ -23,11 +24,13 @@ public class PurchaseInfoAction extends BaseAction{
 	private List<PurchaseInfo> purchaseInfoList;
 	private PurchaseOrder purchaseOrder;
 	private PurchaseInfo purchaseInfo;
+	private Double beginDate;
+	private Double endDate;
+	
 	private String message;
 	public String execute(){
 		return "default";
 	}
-
 	/**
 	 * 编辑界面
 	 */
@@ -47,8 +50,13 @@ public class PurchaseInfoAction extends BaseAction{
 		System.out.println(pageNo);
 		try {
 			if(purchaseInfo!=null){
-				purchaseInfoService.update(purchaseInfo);
 				purchaseOrder = purchaseOrderService.findObjectById(purchaseInfo.getPurchaseOrderId().getId());
+				if(purchaseOrder.getStatus() == 1){
+					purchaseInfoService.editAndUpdateFacilitie(purchaseInfo);
+				}else{
+					purchaseInfoService.update(purchaseInfo);
+				}
+				
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -64,7 +72,11 @@ public class PurchaseInfoAction extends BaseAction{
 			if(purchaseInfo!=null){
 				purchaseInfo = purchaseInfoService.findObjectById(purchaseInfo.getId());
 				purchaseOrder = purchaseOrderService.findObjectById(purchaseInfo.getPurchaseOrderId().getId());
-				purchaseInfoService.delete(purchaseInfo.getId());
+				if(purchaseOrder.getStatus()==1){
+					purchaseInfoService.deleteAndUpdateFacilitie(purchaseInfo);
+				}else{
+					purchaseInfoService.delete(purchaseInfo.getId());
+				}
 			}
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());

@@ -28,7 +28,8 @@
 		        <div id="collapseOne" class="panel-collapse collapse in">
 		          <div class="panel-body">
 		            <ul class="nav nav-pills nav-stacked">
-		              <li><a title="linen_fInfo" href="${path }/linen/linen_fInfo.action">采购单处理</a></li>
+		              <li><a title="purchaseorder_change" href="${path }/purchase/purchaseorder_change.action">采购单处理</a></li>
+		               <li><a title="purchaseinfo_info" href="${path }/purchase/purchaseinfo_info.action">往日采购查询</a></li>
 		            </ul>
 		          </div>
 		        </div>
@@ -44,8 +45,8 @@
 		        <div id="collapseTwo" class="panel-collapse collapse">
 		          <div class="panel-body">
 		            <ul class="nav nav-pills nav-stacked">
-		              <li><a title="purchaseorder_info" href="${path }/purchase/purchaseorder_info.action">采购信息查询</a></li>
-		              <li><a title="purchaseorder_add" href="${path }/purchase/purchaseorder_add.action">采购信息录入</a></li>
+		              <li><a title="purchaseorder_info" href="${path }/purchase/purchaseorder_info.action">采购订单查询</a></li>
+		              <li><a title="purchaseorder_add" href="${path }/purchase/purchaseorder_add.action">采购订单录入</a></li>
 		            </ul>
 		          </div>
 		        </div>

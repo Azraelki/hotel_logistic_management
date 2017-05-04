@@ -11,6 +11,10 @@
     			<param name="actionName">purchaseorder_info</param>
     			<param name="pageNo">${pageNo}</param>
     		</result>
+    		<result name="change" type="redirectAction">
+    			<param name="actionName">purchaseorder_change</param>
+    			<param name="pageNo">${pageNo}</param>
+    		</result>
     		<result name="{1}">/WEB-INF/jsp/purchase/purchaseorder_{1}.jsp</result>
     	</action>
     	<action name="purchaseinfo_*" class="cn.azrael.main.purchase.action.PurchaseInfoAction" method="{1}">

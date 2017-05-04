@@ -13,7 +13,7 @@
 		<property name="date" column="po_date" type="double" not-null="true"></property>
 		<property name="dealDate" column="po_deal_date" type="double"></property>
 		<many-to-one name="employeeId" class="cn.azrael.main.user.entity.Employee" column="e_id" not-null="true"></many-to-one>
-		<set name="purchaseInfos" cascade="save-update,delete" table="purchase_info">
+		<set name="purchaseInfos" cascade="save-update,delete" inverse="true" table="purchase_info">
 			<key column="po_id" ></key>
 			<one-to-many class="PurchaseInfo"/>
 		</set>

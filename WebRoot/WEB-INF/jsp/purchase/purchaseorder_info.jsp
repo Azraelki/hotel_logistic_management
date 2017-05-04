@@ -37,7 +37,8 @@
 	      <th><input id="checkbox" type="checkbox"></th>
 	      <th>负责人</th>
 	      <th>状态</th>
-	      <th>日期</th>
+	      <th>提交日期</th>
+	      <th>处理日期</th>
 	      <th>操作</th>
 	    </tr>
 	  </thead>
@@ -54,6 +55,9 @@
 		       </td>
 		      <td><span title="date">
 		      <input type="hidden" value="${item.date }">
+		      </span></td>
+		      <td><span title="date">
+		      <input type="hidden" value="${item.dealDate }">
 		      </span></td>
 		      <td>
 		      	<a href="detail" title="${item.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">详情</a>
