@@ -46,10 +46,10 @@ public class FacilitieUseServiceImpl extends BaseServiceImpl<FacilitieUse> imple
 		if(facilitieUse.getFacilitieId()!=null){
 			//保存新数量
 			Integer newNum = facilitieUse.getUseNum();
-			//获取原来数据
-			facilitieUse = facilitieUseDao.findObjectById(facilitieUse.getId());
 			//获取当前设施
 			Facilitie facilitie = facilitieDao.findObjectById(facilitieUse.getFacilitieId().getId());
+			//获取原来数据
+			facilitieUse = facilitieUseDao.findObjectById(facilitieUse.getId());
 			//判断设施是否改变
 			if(facilitie.getId().equals(facilitieUse.getFacilitieId().getId())){
 				Integer oldNum = facilitieUse.getUseNum();
@@ -61,6 +61,7 @@ public class FacilitieUseServiceImpl extends BaseServiceImpl<FacilitieUse> imple
 				}
 			}else{
 				deleteAndEditFacilitie(facilitieUse);
+				facilitieUse.setFacilitieId(facilitie);
 				addAndEditFacilitie(facilitieUse);
 			}
 		}
