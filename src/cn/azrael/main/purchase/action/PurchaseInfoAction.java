@@ -8,6 +8,7 @@ import com.opensymphony.xwork2.ActionContext;
 
 import cn.azrael.main.core.action.BaseAction;
 import cn.azrael.main.core.util.QueryHelper;
+import cn.azrael.main.facilitie.entity.Facilitie;
 import cn.azrael.main.facilitie.service.FacilitieService;
 import cn.azrael.main.purchase.entity.PurchaseInfo;
 import cn.azrael.main.purchase.entity.PurchaseOrder;
@@ -24,12 +25,33 @@ public class PurchaseInfoAction extends BaseAction{
 	private List<PurchaseInfo> purchaseInfoList;
 	private PurchaseOrder purchaseOrder;
 	private PurchaseInfo purchaseInfo;
-	private Double beginDate;
-	private Double endDate;
+	private Facilitie facilitie;
 	
 	private String message;
 	public String execute(){
 		return "default";
+	}
+	/**
+	 * 采购单列表信息
+	 */
+	public String info() throws Exception{
+		//加载设施列表
+		ActionContext.getContext().getContextMap().put("facilitieList", facilitieService.findObjects());
+		QueryHelper queryHelper = new QueryHelper(PurchaseInfo.class, "pi");
+		try {
+			System.out.println(pageNo);
+			if(facilitie!=null){
+				System.out.println(facilitie.getId());
+				if(facilitie.getId().length() >= 10){
+					queryHelper.addCondition("pi.facilitieId.id=?", facilitie.getId());
+				}
+			}
+			pageResult = purchaseInfoService.getPageResult(queryHelper, this.getPageNo(), this.getPageSize());
+		} catch (Exception e) {
+			throw new Exception(e.getMessage());
+		}
+		
+		return "info";
 	}
 	/**
 	 * 编辑界面
@@ -114,6 +136,12 @@ public class PurchaseInfoAction extends BaseAction{
 
 	public void setMessage(String message) {
 		this.message = message;
+	}
+	public Facilitie getFacilitie() {
+		return facilitie;
+	}
+	public void setFacilitie(Facilitie facilitie) {
+		this.facilitie = facilitie;
 	}
 	
 	
