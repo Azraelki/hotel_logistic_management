@@ -103,6 +103,7 @@ CREATE TABLE purchase_order(
     `po_id` VARCHAR(32),
     `e_id` VARCHAR(32),
     `po_date` REAL,
+    `po_deal_date` REAL,
     `po_status` BOOL,
     KEY `idx_po_po_status` (`po_status`),
     CONSTRAINT `fk_po_e_id` FOREIGN KEY(`e_id`) REFERENCES employee(`e_id`),

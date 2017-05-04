@@ -11,6 +11,7 @@ public class PurchaseOrder implements Serializable{
 	private String id;
 	private Employee employeeId;
 	private Double date;
+	private Double dealDate;
 	private Integer status;
 	private Set<PurchaseInfo> purchaseInfos;
 	public PurchaseOrder() {
@@ -46,4 +47,11 @@ public class PurchaseOrder implements Serializable{
 	public void setPurchaseInfos(Set<PurchaseInfo> purchaseInfos) {
 		this.purchaseInfos = purchaseInfos;
 	}
+	public Double getDealDate() {
+		return dealDate;
+	}
+	public void setDealDate(Double dealDate) {
+		this.dealDate = dealDate;
+	}
+	
 }
