@@ -50,6 +50,7 @@ CREATE TABLE food(
     `fo_name` VARCHAR(20),
     `fo_type` INT,
     `fo_style` VARCHAR(20),
+    `fo_status` BOOL,
     KEY `idx_fo_style` (`fo_style`),
     KEY `idx_fo_type` (`fo_type`),
     PRIMARY KEY(`fo_id`)
