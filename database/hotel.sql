@@ -51,6 +51,7 @@ CREATE TABLE food(
     `fo_type` INT,
     `fo_style` VARCHAR(20),
     `fo_status` BOOL,
+    `fo_price` double,
     KEY `idx_fo_style` (`fo_style`),
     KEY `idx_fo_type` (`fo_type`),
     PRIMARY KEY(`fo_id`)
