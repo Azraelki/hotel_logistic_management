@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+          "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="food-action" namespace="/food" extends="json-default">
+    	
+    	<action name="food_*" class="cn.azrael.main.food.action.FoodAction" method="{1}">
+    		<result name="default">/WEB-INF/jsp/food/food_main.jsp</result>
+    		<result name="list" type="redirectAction">
+    			<param name="actionName">food_info</param>
+    			<param name="pageNo">${pageNo}</param>
+    		</result>
+    		<result name="{1}">/WEB-INF/jsp/food/food_{1}.jsp</result>
+    	</action>
+    	<action name="foodshow_*" class="cn.azrael.main.food.action.FoodShowAction" method="{1}">
+    		<result name="list" type="redirectAction">
+    			<param name="actionName">foodshow_info</param>
+    			<param name="pageNo">${pageNo}</param>
+    		</result>
+    		<result name="json" type="json">
+    			<param name="root">foods</param>
+    		</result>
+    		<result name="{1}">/WEB-INF/jsp/food/foodshow_{1}.jsp</result>
+    	</action>
+    </package>
+</struts>

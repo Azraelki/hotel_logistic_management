@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.azrael.main.food.entity">
+	<class name="FoodShow" table="food_show">
+		<id name="id" type="string">
+			<column name="fs_id" length="32"></column>
+			<generator class="uuid.hex"></generator>
+		</id>
+		<many-to-one name="foodId" class="Food" column="fo_id" not-null="true"></many-to-one>
+		<property name="date" column="fs_date" type="double" not-null="true"></property>
+	</class>
+
+</hibernate-mapping>
+
+
+
