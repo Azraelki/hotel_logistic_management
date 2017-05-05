@@ -22,4 +22,6 @@
     <include file="cn/azrael/main/linen/config/linen-struts.xml"></include>
     <!-- purchase -->
     <include file="cn/azrael/main/purchase/config/purchase-struts.xml"></include>
+    <!-- food -->
+    <include file="cn/azrael/main/food/config/food-struts.xml"></include>
 </struts>
