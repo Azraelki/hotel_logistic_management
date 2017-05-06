@@ -82,23 +82,17 @@ CREATE TABLE linens_info(
 CREATE TABLE facilitie_fix(
     `ff_id` VARCHAR(32),
     `e_id` VARCHAR(32),
-    `ff_date` REAL,
-    CONSTRAINT `fk_ff_e_id` FOREIGN KEY(`e_id`) REFERENCES employee(`e_id`),
-    KEY `idx_ff_date` (`ff_date`),
-    PRIMARY KEY(`ff_id`)
-)ENGINE=INNODB DEFAULT CHARSET=utf8;
-
-CREATE TABLE facilitie_fix_info(
-    `ffi_id` VARCHAR(32),
-    `ff_id` VARCHAR(32),
     `f_id` VARCHAR(32),
-    `ffi_status` VARCHAR(20),
-    `ffi_content` VARCHAR(200),
-    `ffi_date` REAL,
-    KEY `idx_ffi_status` (`ffi_status`),
-    CONSTRAINT `fk_ffi_ff_id` FOREIGN KEY(`ff_id`) REFERENCES facilitie_fix(`ff_id`),
-    CONSTRAINT `fk_ffi_f_id` FOREIGN KEY(`f_id`) REFERENCES facilities(`f_id`),
-    PRIMARY KEY(`ffi_id`)
+    `ff_status` VARCHAR(20),
+    `ff_content` VARCHAR(200),
+     `ff_date_begin` REAL,
+    `ff_date_end` REAL,
+     KEY `idx_ff_status` (`ff_status`),
+    CONSTRAINT `fk_ff_e_id` FOREIGN KEY(`e_id`) REFERENCES employee(`e_id`),
+    CONSTRAINT `fk_ff_f_id` FOREIGN KEY(`f_id`) REFERENCES facilities(`f_id`),
+    KEY `idx_ff_date_begin` (`ff_date_begin`),
+    KEY `idx_ff_date_end` (`ff_date_end`),
+    PRIMARY KEY(`ff_id`)
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
 
 CREATE TABLE purchase_order(
