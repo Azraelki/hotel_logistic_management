@@ -83,7 +83,7 @@ CREATE TABLE facilitie_fix(
     `ff_id` VARCHAR(32),
     `e_id` VARCHAR(32),
     `f_id` VARCHAR(32),
-    `ff_status` VARCHAR(20),
+    `ff_status` INT,
     `ff_content` VARCHAR(200),
      `ff_date_begin` REAL,
     `ff_date_end` REAL,
