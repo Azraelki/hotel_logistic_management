@@ -37,7 +37,7 @@
       	  	<li><a title="content" href="${path }/linen/linen.action">布草管理</a></li>
       	  	<li><a title="content" href="${path }/purchase/purchaseorder.action">采购管理</a></li>
       	  	<li><a title="content" href="${path }/food/food.action">餐饮管理</a></li>
-      	  	<li><a title="content" href="#">设施管理</a></li>
+      	  	<li><a title="content" href="${path }/facilitie/facilitie.action">设施管理</a></li>
       	  </ul>
       	  <ul class="nav navbar-nav navbar-right">
 		    <li class="dropdown">

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.azrael.main.facilitie.entity">
+	<class name="FacilitieFix" table="facilitie_fix">
+		<id name="id" type="string">
+			<column name="ff_id" length="32"></column>
+			<generator class="uuid.hex"></generator>
+		</id>
+		<many-to-one name="employeeId" column="e_id" class="cn.azrael.main.user.entity.Employee"></many-to-one>
+		<many-to-one name="facilitieId" column="f_id" class="Facilitie"></many-to-one>
+		<property name="status" column="ff_status" type="integer"  not-null="true"></property>
+		<property name="contnet" column="ff_content" type="string" length="200" not-null="true"></property>
+		<property name="dateBegin" column="ff_date_begin" type="double"  not-null="true"></property>
+		<property name="dateEnd" column="ff_date_end" type="double"></property>
+	</class>
+
+</hibernate-mapping>
+
+
+

@@ -10,6 +10,7 @@
         http://www.springframework.org/schema/context/spring-context.xsd">
 	
 	<bean id="facilitieDao" class="cn.azrael.main.facilitie.dao.impl.FacilitieDaoImpl" parent="baseDao"></bean>
+	<bean id="facilitieFixDao" class="cn.azrael.main.facilitie.dao.impl.FacilitieFixDaoImpl" parent="baseDao"></bean>
 	<!--  配置注解扫描信息,扫描service-->
 	<context:component-scan base-package="cn.azrael.main.facilitie.service.impl"></context:component-scan>
 	
