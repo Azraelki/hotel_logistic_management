@@ -146,9 +146,8 @@ CREATE TABLE test(
 
 CREATE TABLE role(
 	r_id VARCHAR(32),
-	u_id VARCHAR(32),
+	r_type INT,
 	privilege VARCHAR(10),
-	CONSTRAINT `fk_r_u_id` FOREIGN KEY(`u_id`) REFERENCES users(`u_id`),
 	PRIMARY KEY(`r_id`)
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
 
