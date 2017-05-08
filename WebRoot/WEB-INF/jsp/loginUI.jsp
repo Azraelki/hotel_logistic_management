@@ -1,3 +1,4 @@
+<%@page import="cn.azrael.main.core.constant.Constant"%>
 <%@ page language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%
@@ -31,7 +32,7 @@ request.setAttribute("ctx", path);
 	                </div>
 	                <div class="form-group">
 	                    <div class="main-checkbox">
-	                        <input type="checkbox" value="None" id="remember" name="check"/>
+	                        <input type="checkbox" value="remember" id="remember" name="rememberMe"/>
 	                        <label for="remember"></label>
 	                    </div>
 	                    <span class="text">Remember me</span>
@@ -43,6 +44,9 @@ request.setAttribute("ctx", path);
 	</div>
 	<script>
 		$(function(){
+			if(window!=top){
+				top.location.href = location.href;
+			}
 			/* $("#submit").click(function(e){
 				e.preventDefault();
 				

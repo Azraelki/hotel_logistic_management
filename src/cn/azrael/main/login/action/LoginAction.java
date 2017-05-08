@@ -1,6 +1,7 @@
 package cn.azrael.main.login.action;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
 
 import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.logging.Log;
@@ -8,6 +9,7 @@ import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.ServletActionContext;
 
 import cn.azrael.main.core.constant.Constant;
+import cn.azrael.main.user.entity.Employee;
 import cn.azrael.main.user.entity.User;
 import cn.azrael.main.user.service.UserService;
 
@@ -18,8 +20,21 @@ public class LoginAction extends ActionSupport{
 	private UserService userService;
 	private User user;
 	private String loginResult;
+	private String rememberMe;
 	//跳转到登录界面
 	public String toLoginUI(){
+		if(ServletActionContext.getRequest().getSession().getAttribute(Constant.USER)!=null){
+			return "home";
+		}
+		Cookie[] cookies = ServletActionContext.getRequest().getCookies();
+		for (Cookie c : cookies) {
+			if("user.employeeId.phoneNumber".equals(c.getName())){
+				user = new User();
+				Employee e = new Employee();
+				e.setPhoneNumber(c.getValue());
+				user.setEmployeeId(e);
+			}
+		}
 		return "loginUI";
 	}
 	//登陆
@@ -34,6 +49,22 @@ public class LoginAction extends ActionSupport{
 					//将用户登录信息保存到日志中
 					Log log = LogFactory.getLog(getClass());
 					log.info("用户为："+ u.getEmployeeId().getName()+" 的用户登陆了系统。");
+					//判定是否需要设置或删除cookie
+					System.out.println(rememberMe);
+					if("remember".equals(rememberMe)){
+						if(StringUtils.isNotBlank(rememberMe)){
+							Cookie cookieName = new Cookie("user.employeeId.phoneNumber", u.getEmployeeId().getPhoneNumber());
+							cookieName.setMaxAge(30*24*60*60);
+							ServletActionContext.getResponse().addCookie(cookieName);
+						}
+					}else{
+						Cookie[] cookies = ServletActionContext.getRequest().getCookies();
+						for(Cookie c:cookies){
+							if("user.employeeId.phoneNumber".equals(c.getName())){
+								c.setMaxAge(-1);
+							}
+						}
+					}
 					//重定向到首页
 					return "home";
 				}else{
@@ -68,6 +99,12 @@ public class LoginAction extends ActionSupport{
 	}
 	public void setLoginResult(String loginResult) {
 		this.loginResult = loginResult;
+	}
+	public String getRememberMe() {
+		return rememberMe;
+	}
+	public void setRememberMe(String rememberMe) {
+		this.rememberMe = rememberMe;
 	}
 	
 }
