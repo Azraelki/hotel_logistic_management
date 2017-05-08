@@ -60,7 +60,7 @@ public class EmployeeAction extends BaseAction{
 					message = "出现同名员工,请加以区分!";
 					return "add";
 				}
-				employeeService.save(employee);
+				employeeService.addEmployeeAndSaveUser(employee);
 				message = "添加成功！";
 			} catch (Exception e) {
 				message = "添加失败";
@@ -86,7 +86,7 @@ public class EmployeeAction extends BaseAction{
 	public String edit(){
 		try {
 			if(employee!=null){
-				employeeService.update(employee);
+				employeeService.updateAndUpdateUser(employee);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -98,7 +98,7 @@ public class EmployeeAction extends BaseAction{
 	 */
 	public String delete() throws Exception{
 		try {
-			employeeService.delete(employee.getId());
+			employeeService.deleteAndDeleteUser(employee.getId());
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
@@ -111,7 +111,7 @@ public class EmployeeAction extends BaseAction{
 		if(selectedRow!=null){
 			for(String s:selectedRow){
 				try {
-					employeeService.delete(s);
+					employeeService.deleteAndDeleteUser(s);
 				} catch (Exception e) {
 					throw new Exception(e.getMessage());
 				}
