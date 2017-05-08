@@ -70,7 +70,7 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee> implements Em
 			if(num!=u.getType() && (num == 1 || num == 2 || num == 5 || num == 6)){
 				u.setType(num);
 				userDao.update(u);
-			}else{
+			}else if(num!=u.getType()){
 				userDao.delete(u.getId());
 			}
 		}else{
