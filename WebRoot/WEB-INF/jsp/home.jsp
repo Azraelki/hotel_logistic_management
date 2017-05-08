@@ -42,12 +42,12 @@
       	  <ul class="nav navbar-nav navbar-right">
 		    <li class="dropdown">
 		      <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-		      <span class="glyphicon glyphicon-user">&nbsp;</span>admin<span class="caret"></span>
+		      <span class="glyphicon glyphicon-user">&nbsp;</span>${SYS_USER.employeeId.name}<span class="caret"></span>
 		      </a>
 		      <ul class="dropdown-menu" >
 		        <li><a href="#">个人中心</a></li>
 		        <li class="divider"></li>
-		        <li><a href="#">登出</a></li>
+		        <li><a href="${path }/sys/login_logout.action">登出</a></li>
 		      </ul>
 		    </li>
 		  </ul>
