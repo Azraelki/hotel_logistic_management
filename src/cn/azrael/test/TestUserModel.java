@@ -21,16 +21,20 @@ import cn.azrael.main.user.dao.UserDao;
 import cn.azrael.main.user.entity.Employee;
 import cn.azrael.main.user.entity.EmployeeWork;
 import cn.azrael.main.user.entity.Job;
+import cn.azrael.main.user.entity.Role;
 import cn.azrael.main.user.entity.User;
 import cn.azrael.main.user.service.EmployeeService;
 import cn.azrael.main.user.service.EmployeeWorkService;
 import cn.azrael.main.user.service.JobService;
+import cn.azrael.main.user.service.UserService;
 
 public class TestUserModel {
 	private ApplicationContext ac;
+	private UserService userService;
 	@Before
 	public void loadCtx(){
 		ac = new ClassPathXmlApplicationContext(new String[] {"classpath:spring.xml"});
+		userService = (UserService) ac.getBean("userService");
 	}
 	@Test
 	public void testFindObject(){
@@ -120,5 +124,11 @@ public class TestUserModel {
 			job.setName(m.get(i));
 			js.save(job);
 		}
+	}
+	@Test
+	public void testQueryUser() throws Exception{
+		User user = userService.findObjects().get(0);
+		List<Role> l = userService.findRoleByUser(user);
+		System.out.println(l);
 	}
 }
