@@ -12,6 +12,7 @@
 	<bean id="userDao" class="cn.azrael.main.user.dao.impl.UserDaoImpl" parent="baseDao"></bean>
 	<bean id="employeeWorkDao" class="cn.azrael.main.user.dao.impl.EmployeeWorkDaoImpl" parent="baseDao"></bean>
 	<bean id="jobDao" class="cn.azrael.main.user.dao.impl.JobDaoImpl" parent="baseDao"></bean>
+	<bean id="roleDao" class="cn.azrael.main.user.dao.impl.RoleDaoImpl" parent="baseDao"></bean>
 	<!--  配置注解扫描信息,扫描service-->
 	<context:component-scan base-package="cn.azrael.main.user.service.impl"></context:component-scan>
 	
