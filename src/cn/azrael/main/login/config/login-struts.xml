@@ -3,9 +3,12 @@
           "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
           "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-    <package name="login-action" namespace="/" extends="struts-default">
-    	<action name="login" class="cn.azrael.main.login.action.LoginAction" method="login">
-    		<result name="success">/WEB-INF/jsp/home.jsp</result>
+    <package name="login-action" namespace="/sys" extends="struts-default">
+    	<action name="login_*" class="cn.azrael.main.login.action.LoginAction" method="{1}">
+    		<result name="{1}">/WEB-INF/jsp/{1}.jsp</result>
+    		<result name="home">/WEB-INF/jsp/home.jsp</result>
+    		<result name="loginUI">/WEB-INF/jsp/loginUI.jsp</result>
+			<result name="noPermissionUI">/WEB-INF/jsp/noPermissionUI.jsp</result>
     	</action>
     </package>
 </struts>
