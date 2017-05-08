@@ -77,6 +77,9 @@
     	<property name="sessionFactory" ref="sessionFactory"></property>
     </bean>
     
+	<!-- 权限鉴定类 -->
+    <bean id="permissionCheck" class="cn.azrael.main.core.permission.PermissionCheck"></bean>
+    
 	<!-- 导入其他spring文件 -->
 	<import resource="classpath:cn/azrael/*/config/*-spring.xml"/>
 	<import resource="classpath:cn/azrael/main/*/config/*-spring.xml"/>
