@@ -115,7 +115,8 @@
 			$("#submit").click(function(e){
 				e.preventDefault();
 				//将无用空白行去除
-				$("#dataTarget tr:last").remove();
+				if(!$("#dataTarget tr:last select").prop("disabled"))
+					$("#dataTarget tr:last").remove();
 				$("#list_info").attr({
 					"action": $("#list_info").attr("title").replace("_info","_add")
 				});
