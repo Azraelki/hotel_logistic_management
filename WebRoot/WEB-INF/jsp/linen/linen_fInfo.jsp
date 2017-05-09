@@ -27,7 +27,6 @@
 	      <th>正常数量</th>
 	      <th>损坏数量</th>
 	      <th>总数</th>
-	      <th>操作</th>
 	    </tr>
 	  </thead>
 	  <tbody>
@@ -38,10 +37,6 @@
 		      <td>${item.normalNum }</td>
 		      <td>${item.badNum }</td>
 		      <td>${item.normalNum+item.badNum }</td>
-		      <td>
-		      	<a href="editUI" title="${item.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">编辑</a>
-		      	<a href="delete" title="${item.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">删除</a>
-		      </td>
 		    </tr>
 	    </c:forEach>
 	  </tbody>
