@@ -29,14 +29,14 @@
     				<span class="col-xs-6"></span>
     			</div>
     			<div class="from-group row">
-    				<label for="ewLeaveNum" class="col-xs-2 control-label">年&nbsp;龄</label>
+    				<label for="ewLeaveNum" class="col-xs-2 control-label">退房&nbsp;打扫</label>
     				<div class="col-xs-4">
     					<input type="number" name="employeeWork.leaveNum" value="${employeeWork.leaveNum}" id="ewLeaveNum" class="form-control" placeholder="请输入退房打扫数" min="0" max="100">
     				</div>
     				<span class="col-xs-6"></span>
     			</div>
     			<div class="from-group row">
-    				<label for="ewCleanNum" class="col-xs-2 control-label">年&nbsp;龄</label>
+    				<label for="ewCleanNum" class="col-xs-2 control-label">续房&nbsp;打扫</label>
     				<div class="col-xs-4">
     					<input type="number" name="employeeWork.cleanNum" value="${employeeWork.cleanNum}" id="ewLeaveNum" class="form-control" placeholder="请输入退房打扫数" min="0" max="100">
     				</div>
