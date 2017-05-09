@@ -56,17 +56,16 @@
     </div>
     <script>
     	$(function(){
-    		/*$("#temDate").change(function(){
-    			var date = translateDateToReal($(this).val());
-    			$("#dateAt").val(date);
-    		});
-    		$("#dateAt").change(function(){
-    			var date = translateRealToDate($(this).val());
-    			$("#temDate").val(date);
-    		});*/
     		changeTogether("temDate", "dateAt");
     		$("input").click(function(e){
     			$("#message").text("");
+    		});
+    		$("#addForm").submit(function(){
+    			var flag = true;
+    			$("form input").each(function(){
+    				flag = flag && validate($(this), textNotNull, $("span",$(this).parent().parent()), "输入项不能为空")
+    			});
+    			return flag;
     		});
     	});
     </script>

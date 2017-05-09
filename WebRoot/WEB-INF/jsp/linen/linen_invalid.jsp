@@ -13,7 +13,7 @@
   
   <body>
     <div class="well bs-component">
-    	<form id="userForm" action="${path }/linen/linen_invalid.action" class="form-horizontal" method="post" enctype="multipart/form-data">
+    	<form id="addForm" action="${path }/linen/linen_invalid.action" class="form-horizontal" method="post" enctype="multipart/form-data">
     		<fieldset>
     			<div class="from-group row">
     				<label for="fName" class="col-xs-2 control-label">布草&nbsp;种类</label>
@@ -25,14 +25,14 @@
 							</c:forEach>
 						</select>
     				</div>
-    				<span class="col-xs-6"></span>
+    				<span id="fNameValidate" class="col-xs-6"></span>
     			</div>
     			<div class="from-group row">
     				<label for="fBadNum" class="col-xs-2 control-label">损坏&nbsp;数量</label>
     				<div class="col-xs-4">
     					<input type="number" name="facilitie.badNum" id="fBadNum" class="form-control" placeholder="请输入布草损坏数量" min="1" max="100">
     				</div>
-    				<span class="col-xs-6"></span>
+    				<span id="fBadNumValidate" class="col-xs-6"></span>
     			</div>
     			<div class="from-group row">
     				<div class="col-xs-9 pull-right">
@@ -48,6 +48,9 @@
     	$(function(){
     		$("input").click(function(e){
     			$("#message").text("");
+    		});
+    		$("#addForm").submit(function(){
+    			return validate($("#fName"), notZero, $("#fNameValidate"), "设施选项不能为空！") && validate($("#fBadNum"), textNotNull, $("#fBadNumValidate"), "损坏数目不能为空！");
     		});
     	});
     </script>

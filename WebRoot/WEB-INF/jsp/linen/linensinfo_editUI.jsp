@@ -16,7 +16,7 @@
   
   <body>
     <div class="well bs-component">
-    	<form id="userForm" action="${path }/linen/linensinfo_edit.action" class="form-horizontal" method="post" enctype="multipart/form-data">
+    	<form id="editForm" action="${path }/linen/linensinfo_edit.action" class="form-horizontal" method="post" enctype="multipart/form-data">
     		<fieldset>
     			<div class="from-group row">
     				<label for="fName" class="col-xs-2 control-label">布草&nbsp;种类</label>
@@ -80,7 +80,13 @@
     </div>
     <script>
     	$(function(){
-    		
+    		$("#editForm").submit(function(){
+    			var flag = true;
+    			$("form input").each(function(){
+    				flag = flag && validate($(this), textNotNull, $("span",$(this).parent().parent()), "输入项不能为空")
+    			});
+    			return flag;
+    		});
     	});
     </script>
   </body>

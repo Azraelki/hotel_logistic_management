@@ -24,7 +24,7 @@
 			<div class="col-xs-2">
 				<a  class="btn btn-default"  id="submit" >提交洗涤单</a>
 			</div>
-			<span class="col-xs-2">${message }</span>
+			<span id="validate" class="col-xs-2">${message }</span>
 		</div>
 	<div style="height: 400px;overflow-y: auto;">
 	    <table class="table table-striped table-hover ">
@@ -99,6 +99,17 @@
 			//确认信息
 			$("a[title='confirm']").click(function(e){
 				e.preventDefault();
+				//判断所在行都非空
+				var tem = true;
+				$("input",$(this).parent().parent()).each(function(){
+					tem = tem && validate($(this), textNotNull, null, null);
+				});
+				tem = tem && notZero($("select:first",$(this).parent().parent()).val());
+				//若有为空项则禁止确认
+				if(!tem){
+					alert("有空值,请核查各项值！");
+					return;
+				}
 				//若是已经确认过的则不操作
 				if($(this).hasClass("disabled")){
 					return;
@@ -114,6 +125,22 @@
 			});
 			$("#submit").click(function(e){
 				e.preventDefault();
+				//判断负责人和日期是否为空
+				var tem = true;
+				$("input",$(this).parent().parent()).each(function(){
+					tem = tem && validate($(this), textNotNull, $("#validate"), "负责人或日期为空!");
+				});
+				if(tem){
+					//判断是否有确认过的数据
+					tem = tem && $("#dataTarget tr:first a[title='confirm']").hasClass("disabled");
+					$("#validate").html("");
+					if(!tem){
+						$("#validate").html("没有洗涤数据！");
+						return;
+					}
+				}else{
+					return;
+				}
 				//将无用空白行去除
 				if(!$("#dataTarget tr:last select").prop("disabled"))
 					$("#dataTarget tr:last").remove();

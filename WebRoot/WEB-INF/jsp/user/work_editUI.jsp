@@ -61,16 +61,15 @@
     </div>
     <script>
     	$(function(){
-    		/*$("#temDate").change(function(){
-    			var date = translateDateToReal($(this).val());
-    			$("#dateAt").val(date);
-    		});
-    		$("#dateAt").change(function(){
-    			var date = translateRealToDate($(this).val());
-    			$("#temDate").val(date);
-    		});*/
     		changeTogether("temDate", "dateAt");
     		$("#temDate").val(translateRealToDate($("#dateAt").val()));
+    		$("#editForm").submit(function(){
+    			var flag = true;
+    			$("form input").each(function(){
+    				flag = flag && validate($(this), textNotNull, $("span",$(this).parent().parent()), "输入项不能为空")
+    			});
+    			return flag;
+    		});
     	});
     </script>
   </body>

@@ -16,7 +16,7 @@
   
   <body>
     <div class="well bs-component">
-    	<form id="editForm" action="${path }/facilitie/facilitie_add.action" class="form-horizontal" method="post" enctype="multipart/form-data">
+    	<form id="addForm" action="${path }/facilitie/facilitie_add.action" class="form-horizontal" method="post" enctype="multipart/form-data">
     		<fieldset>
     			<div class="from-group row">
     				<label for="fName" class="col-xs-2 control-label">设施&nbsp;名称</label>
@@ -34,7 +34,7 @@
 			  	  			<option value="${2 }">其他</option>
 			  	  		</select>
     				</div>
-    				<span class="col-xs-6"></span>
+    				<span id="fTypeValidate" class="col-xs-6"></span>
     			</div>
     			<div class="from-group row">
     				<label for="fnNum" class="col-xs-2 control-label">正常&nbsp;数量</label>
@@ -62,6 +62,14 @@
     </div>
     <script>
     	$(function(){
+    		$("#addForm").submit(function(){
+    			var flag = true;
+    			flag = flag && validate($("#fType"), notZero, $("#fTypeValidate"), "设施类型不能为空！");
+    			$("form input").each(function(){
+    				flag = flag && validate($(this), textNotNull, $("span",$(this).parent().parent()), "输入项不能为空")
+    			});
+    			return flag;
+    		});
     	});
     </script>
   </body>

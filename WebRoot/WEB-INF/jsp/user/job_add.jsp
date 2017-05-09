@@ -20,7 +20,7 @@
     				<div class="col-xs-4">
     					<input type="text" id="jName" name="job.name" class="form-control" placeholder="请输入职位名称">
     				</div>
-    				<span class="col-xs-6"></span>
+    				<span id="jNameMessage" class="col-xs-6"></span>
     			</div>
     			<div class="from-group row">
     				<div class="col-xs-9 pull-right">
@@ -36,6 +36,10 @@
     	$(function(){
     		$("input").click(function(e){
     			$("#message").text("");
+    		});
+    		$("#addForm").submit(function(){
+    			return validate($("#jName"), textNotNull, $("#jNameMessage"), "职务不能为空");
+    			return false;
     		});
     	});
     </script>

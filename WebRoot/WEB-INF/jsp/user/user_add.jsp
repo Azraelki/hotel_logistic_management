@@ -83,17 +83,16 @@
     </div>
     <script>
     	$(function(){
-    		/*$("#temDate").change(function(){
-    			var date = translateDateToReal($(this).val());
-    			$("#eArrivedAt").val(date);
-    		});
-    		$("#eArrivedAt").change(function(){
-    			var date = translateRealToDate($(this).val());
-    			$("#temDate").val(date);
-    		});*/
     		changeTogether("temDate", "eArrivedAt");
     		$("input").click(function(e){
     			$("#message").text("");
+    		});
+    		$("#userForm").submit(function(){
+    			var flag = true;
+    			$("form input").each(function(){
+    				flag = flag && validate($(this), textNotNull, $("span",$(this).parent().parent()), "输入项不能为空")
+    			});
+    			return flag;
     		});
     	});
     </script>

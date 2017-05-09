@@ -16,7 +16,7 @@
   
   <body>
     <div class="well bs-component">
-    	<form id="userForm" action="${path }/purchase/purchaseinfo_edit.action" class="form-horizontal" method="post" enctype="multipart/form-data">
+    	<form id="editForm" action="${path }/purchase/purchaseinfo_edit.action" class="form-horizontal" method="post" enctype="multipart/form-data">
     		<fieldset>
     			<div class="from-group row">
     				<label for="fName" class="col-xs-2 control-label">设施&nbsp;种类</label>
@@ -76,6 +76,13 @@
     		});
     		$("#piNum").change(function(){
     			$("#piTotal").val($(this).val()*$("#piPrice").val());
+    		});
+    		$("#editForm").submit(function(){
+    			var flag = true;
+    			$("form input").each(function(){
+    				flag = flag && validate($(this), textNotNull, $("span",$(this).parent().parent()), "输入项不能为空")
+    			});
+    			return flag;
     		});
     	});
     </script>

@@ -16,7 +16,7 @@
   
   <body>
     <div class="well bs-component">
-    	<form id="userForm" action="${path }/food/food_add.action" class="form-horizontal" method="post" enctype="multipart/form-data">
+    	<form id="addForm" action="${path }/food/food_add.action" class="form-horizontal" method="post" enctype="multipart/form-data">
     		<fieldset>
     			<div class="from-group row">
     				<label for="foName" class="col-xs-2 control-label">菜品&nbsp;名称</label>
@@ -28,13 +28,14 @@
     			<div class="from-group row">
     				<label class="col-xs-2 control-label">菜品&nbsp;分类</label>
     				<div class="col-xs-4">
-    					<select name="food.type" class="form-control">
+    					<select id="foodType" name="food.type" class="form-control">
     						<option value="${0 }">请选择类型</option>
 			  	  			<c:forEach var="foodType" items="${foodTypeList }">
 			  	  				<option value="${foodType.code }">${foodType.name}</option>
 			  	  			</c:forEach>
 			  	  		</select>
     				</div>
+    				<span id="foodTypeValidate" class="col-xs-6"></span>
     			</div>
     			<div class="from-group row">
     				<label for="foStyle" class="col-xs-2 control-label">菜&nbsp;系</label>
@@ -72,6 +73,14 @@
     </div>
     <script>
     	$(function(){
+    		$("#addForm").submit(function(){
+    			var flag = true;
+    			flag = flag && validate($("#foodType"), notZero, $("#foodTypeValidate"), "设施选项不能为空！");
+    			$("form input").each(function(){
+    				flag = flag && validate($(this), textNotNull, $("span",$(this).parent().parent()), "输入项不能为空")
+    			});
+    			return flag;
+    		});
     	});
     </script>
   </body>

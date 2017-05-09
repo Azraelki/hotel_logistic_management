@@ -21,14 +21,14 @@ request.setAttribute("ctx", path);
 	        <div class="col-md-offset-3 col-md-6">
 	            <form action="${pageContext.request.contextPath }/sys/login_login.action" method="post" id="login" class="form-horizontal">
 	                <span class="heading">后勤管理系统</span>
-	                <c:if test="${loginResult != null }">
-	                	<span class="text-danger">${loginResult }</span>
-	                </c:if>
+	                <span id="validate" class="text-danger">
+	                <c:if test="${loginResult != null }">${loginResult }</c:if>
+	                </span>
 	                <div class="form-group">
-	                    <input type="text" class="form-control" name="user.employeeId.phoneNumber" value="${user.employeeId.phoneNumber }" placeholder="请输入用户名">
+	                    <input id="account" type="text" class="form-control" name="user.employeeId.phoneNumber" value="${user.employeeId.phoneNumber }" placeholder="请输入用户名">
 	                </div>
 	                <div class="form-group help">
-	                    <input type="password" class="form-control" name="user.password" placeholder="密　码">
+	                    <input id="password" type="password" class="form-control" name="user.password" placeholder="密　码">
 	                </div>
 	                <div class="form-group">
 	                    <div class="main-checkbox">
@@ -47,10 +47,9 @@ request.setAttribute("ctx", path);
 			if(window!=top){
 				top.location.href = location.href;
 			}
-			/* $("#submit").click(function(e){
-				e.preventDefault();
-				
-			}); */
+			$("#login").submit(function(){
+				return validate($("#account"),textNotNull,$("#validate"),"账号或密码不能为空") && validate($("#password"),textNotNull,$("#validate"),"账号或密码不能为空");
+			});
 		});
 	</script>
   </body>

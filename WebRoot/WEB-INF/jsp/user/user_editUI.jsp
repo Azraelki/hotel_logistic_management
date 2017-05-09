@@ -106,6 +106,13 @@
     	$(function(){
     		changeTogether("temDate", "eArrivedAt");
     		$("#temDate").val(translateRealToDate($("#eArrivedAt").val()));
+    		$("#userForm").submit(function(){
+    			var flag = true;
+    			$("form input").each(function(){
+    				flag = flag && validate($(this), textNotNull, $("span",$(this).parent().parent()), "输入项不能为空")
+    			});
+    			return flag;
+    		});
     	});
     </script>
   </body>

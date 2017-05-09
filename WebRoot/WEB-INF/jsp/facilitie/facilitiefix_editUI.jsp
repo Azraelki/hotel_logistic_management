@@ -67,7 +67,7 @@
     						<c:otherwise><input id="eName" type="text" name="employee.name" value="${employee.name}" class="form-control" placeholder="请输入维修人员姓名"></c:otherwise>
     					</c:choose>
     				</div>
-    				<span class="col-xs-6"></span>
+    				<span id="eNameValidate" class="col-xs-6"></span>
     			</div>
     			<div class="from-group row">
     				<label for="ffContent" class="col-xs-2 control-label">备注</label>
@@ -89,6 +89,9 @@
     	$(function(){
     		changeTogether("temDate", "dateAt");
     		$("#temDate").val(translateRealToDate($("#dateAt").val()));
+    		$("#editForm").submit(function(){
+    			return validate($("#eName"), textNotNull, $("#eNameValidate"), "维修人员不能为空！");
+    		});
     	});
     </script>
   </body>

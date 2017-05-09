@@ -18,14 +18,14 @@
     			<div class="from-group row">
     				<label for="fName" class="col-xs-2 control-label">设施&nbsp;名称</label>
     				<div class="col-xs-4">
-    					<select name="facilitieUse.facilitieId.id" class="form-control input-sm">
+    					<select id="fName" name="facilitieUse.facilitieId.id" class="form-control input-sm">
 							<option value="${0 }">请选择</option>
 							<c:forEach var="item" items="${facilitieList}">
 								<option value="${item.id }">${item.name }</option>
 							</c:forEach>
 						</select>
     				</div>
-    				<span class="col-xs-6"></span>
+    				<span id="fNameValidate" class="col-xs-6"></span>
     			</div>
     			<div class="from-group row">
     				<label for="fNum" class="col-xs-2 control-label">消耗&nbsp;数量</label>
@@ -57,6 +57,14 @@
     		changeTogether("temDate", "dateAt");
     		$("input").click(function(e){
     			$("#message").text("");
+    		});
+    		$("#addForm").submit(function(){
+    			var flag = true;
+    			flag = flag && validate($("#fName"), notZero, $("#fNameValidate"), "设施选项不能为空！");
+    			$("form input").each(function(){
+    				flag = flag && validate($(this), textNotNull, $("span",$(this).parent().parent()), "输入项不能为空")
+    			});
+    			return flag;
     		});
     	});
     </script>

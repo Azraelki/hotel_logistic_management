@@ -35,7 +35,7 @@
 							</c:forEach>
 						</select>
     				</div>
-    				<span class="col-xs-6"></span>
+    				<span id="fNameValidate" class="col-xs-6"></span>
     			</div>
     			<div class="from-group row">
     				<label for="fuNum" class="col-xs-2 control-label">消耗&nbsp;数量</label>
@@ -65,6 +65,13 @@
     	$(function(){
     		changeTogether("temDate", "dateAt");
     		$("#temDate").val(translateRealToDate($("#dateAt").val()));
+    		$("#editForm").submit(function(){
+    			var flag = true;
+    			$("form input").each(function(){
+    				flag = flag && validate($(this), textNotNull, $("span",$(this).parent().parent()), "输入项不能为空")
+    			});
+    			return flag;
+    		});
     	});
     </script>
   </body>
