@@ -8,5 +8,8 @@ pageContext.setAttribute("basePath", request.getContextPath()+"/") ;
 	<script src="${basePath }js/jquery-1.10.2.js"></script>
 	<!-- BOOTSTRAP SCRIPTS -->
 	<script src="${basePath }js/bootstrap.min.js"></script>
+	<!-- myjs SCRIPTS -->
 	<script src="${basePath }js/myjs.js"></script>
+	<!-- validate SCRIPTS -->
+	<script src="${basePath }js/myValidate.js"></script>
 	
