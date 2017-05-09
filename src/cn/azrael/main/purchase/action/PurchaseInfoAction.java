@@ -46,6 +46,7 @@ public class PurchaseInfoAction extends BaseAction{
 					queryHelper.addCondition("pi.facilitieId.id=?", facilitie.getId());
 				}
 			}
+			queryHelper.addCondition("pi.purchaseOrderId.status=?", 1);
 			pageResult = purchaseInfoService.getPageResult(queryHelper, this.getPageNo(), this.getPageSize());
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());

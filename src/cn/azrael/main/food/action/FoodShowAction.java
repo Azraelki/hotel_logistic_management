@@ -64,6 +64,7 @@ public class FoodShowAction extends BaseAction{
 		QueryHelper queryHelper = new QueryHelper(Food.class, "f");
 		if(food!=null){
 			if(StringUtils.isNotBlank(food.getName())){
+				queryHelper.addCondition("f.status=?", true);
 				queryHelper.addCondition("f.name like ?", "%"+food.getName().replace(" ", "")+"%");
 			}
 		}
