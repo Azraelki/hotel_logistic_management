@@ -61,7 +61,7 @@ public class LoginAction extends ActionSupport{
 						Cookie[] cookies = ServletActionContext.getRequest().getCookies();
 						for(Cookie c:cookies){
 							if("user.employeeId.phoneNumber".equals(c.getName())){
-								c.setMaxAge(-1);
+								c.setMaxAge(0);
 							}
 						}
 					}
