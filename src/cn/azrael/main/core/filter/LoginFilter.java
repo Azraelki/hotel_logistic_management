@@ -86,6 +86,8 @@ public class LoginFilter implements Filter{
 						System.out.println("没有权限");
 						response.sendRedirect(request.getContextPath()+"/sys/login_toNoPermissionUI.action");
 					}
+				}else if(uri.contains("/sys/home")){
+					chain.doFilter(request, response);
 				}
 			}else{
 				//没有登录，跳转到登录页面
