@@ -3,17 +3,20 @@
           "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
           "http://struts.apache.org/dtds/struts-2.0.dtd">
 <struts>
-    <package name="login-action" namespace="/sys" extends="struts-default">
+    <package name="login-action" namespace="/sys" extends="json-default">
     	<action name="login_*" class="cn.azrael.main.login.action.LoginAction" method="{1}">
     		<result name="{1}">/WEB-INF/jsp/{1}.jsp</result>
     		<result name="loginUI">/WEB-INF/jsp/loginUI.jsp</result>
 			<result name="noPermissionUI">/WEB-INF/jsp/noPermissionUI.jsp</result>
     		<result name="home" type="redirectAction">
-    			<param name="actionName">home</param>
+    			<param name="actionName">home_</param>
     		</result>
     	</action>
-    	<action name="home" class="cn.azrael.main.login.action.HomeAction" method="execute">
+    	<action name="home_*" class="cn.azrael.main.login.action.HomeAction" method="{1}">
     		<result name="home">/WEB-INF/jsp/home.jsp</result>
+    		<result name="json" type="json">
+    			<param name="root">message</param>
+    		</result>
     	</action>
     </package>
 </struts>
