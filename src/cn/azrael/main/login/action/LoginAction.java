@@ -27,12 +27,14 @@ public class LoginAction extends ActionSupport{
 			return "home";
 		}
 		Cookie[] cookies = ServletActionContext.getRequest().getCookies();
-		for (Cookie c : cookies) {
-			if("user.employeeId.phoneNumber".equals(c.getName())){
-				user = new User();
-				Employee e = new Employee();
-				e.setPhoneNumber(c.getValue());
-				user.setEmployeeId(e);
+		if(cookies!=null && cookies.length > 0){
+			for (Cookie c : cookies) {
+				if("user.employeeId.phoneNumber".equals(c.getName())){
+					user = new User();
+					Employee e = new Employee();
+					e.setPhoneNumber(c.getValue());
+					user.setEmployeeId(e);
+				}
 			}
 		}
 		return "loginUI";
