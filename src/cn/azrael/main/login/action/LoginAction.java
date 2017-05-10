@@ -62,6 +62,7 @@ public class LoginAction extends ActionSupport{
 						for(Cookie c:cookies){
 							if("user.employeeId.phoneNumber".equals(c.getName())){
 								c.setMaxAge(0);
+								ServletActionContext.getResponse().addCookie(c);
 							}
 						}
 					}
