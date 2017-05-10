@@ -77,7 +77,7 @@
     			var flag = true;
     			flag = flag && validate($("#foodType"), notZero, $("#foodTypeValidate"), "设施选项不能为空！");
     			$("form input").each(function(){
-    				flag = flag && validate($(this), textNotNull, $("span",$(this).parent().parent()), "输入项不能为空")
+    				flag = flag && validate($(this), textNotNull, $("span",$(this).parent().parent()), "输入项不能为空");
     			});
     			return flag;
     		});
