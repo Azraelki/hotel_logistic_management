@@ -2,7 +2,10 @@ package cn.azrael.main.user.service;
 
 import java.util.List;
 
+import javax.servlet.ServletOutputStream;
+
 import cn.azrael.main.core.service.BaseService;
+import cn.azrael.main.linen.entity.Linen;
 import cn.azrael.main.user.entity.Role;
 import cn.azrael.main.user.entity.User;
 
