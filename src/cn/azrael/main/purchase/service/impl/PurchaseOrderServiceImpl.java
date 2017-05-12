@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 
 import org.springframework.stereotype.Service;
 
 import cn.azrael.main.core.service.impl.BaseServiceImpl;
+import cn.azrael.main.core.util.ExcelUtil;
 import cn.azrael.main.core.util.QueryHelper;
 import cn.azrael.main.facilitie.dao.FacilitieDao;
 import cn.azrael.main.facilitie.entity.Facilitie;
@@ -65,5 +67,10 @@ public class PurchaseOrderServiceImpl extends BaseServiceImpl<PurchaseOrder> imp
 			}
 		}
 		purchaseOrderDao.delete(purchaseOrder.getId());
+	}
+	@Override
+	public void exportExcel(PurchaseOrder purchaseOrder,
+			ServletOutputStream outputStream) {
+		ExcelUtil.exportPurchaseExcel(purchaseOrder,outputStream);
 	}
 }

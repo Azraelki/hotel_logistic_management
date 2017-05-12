@@ -17,14 +17,17 @@
   	  			<input type="hidden" id="pageNo" name="pageNo" value="${pageNo }">
   				<input type="hidden" id="lId" name="linen.id" value="${linen.id }">
   				<input type="hidden" id="eId" name="linen.employeeId.id" value="${linen.employeeId.id }">
-  				<label for="eName" class="control-label col-xs-2">负责人</label>
+  				<label for="eName" class="control-label col-xs-1">负责人</label>
   				<div class="col-xs-3">
   					<input class="form-control" type="text" id="eName" name="linen.employeeId.name" value="${linen.employeeId.name }" readonly="readonly">
   				</div>
-  				<label for="date" class="control-label col-xs-2">日&nbsp;期</label>
+  				<label for="date" class="control-label col-xs-1">日&nbsp;期</label>
   	  			<div class="col-xs-3">
   	  				<input  class="form-control" type="date" id="date" name="temDate" readonly="readonly">
   	  				<input class="form-control" type="hidden" value="${linen.date }" name="linen.date" id="lDate">
+  	  			</div>
+  	  			<div class="col-xs-2">
+  	  				<button id="export" class="btn btn-default">导出洗涤单</button>
   	  			</div>
   	  			<div class="col-xs-2">
   	  				<button id="back" class="btn btn-default">返回</button>
@@ -99,6 +102,10 @@
 				});
 				//alert($("#list_info").attr("action"));
 				$("#list_info").submit();
+			});
+			$("#export").click(function(e){
+				e.preventDefault();
+				window.open("${path}/linen/linen_exportExcel.action?linen.id="+$("#lId").val());
 			});
 		});
 	</script>

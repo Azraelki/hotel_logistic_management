@@ -4,8 +4,11 @@ import java.net.URLDecoder;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 
@@ -92,6 +95,26 @@ public class LinenAction extends BaseAction{
 			linen = linenService.findObjectById(linen.getId());
 		}
 		return "detail";
+	}
+	/**
+	 * 导出洗涤单
+	 */
+	public void exportExcel(){
+		try{
+			if(linen!=null && linen.getId()!=null){
+				linen = linenService.findObjectById(linen.getId());
+				HttpServletResponse response = ServletActionContext.getResponse();
+				response.setContentType("application/x-execl");
+				response.setHeader("Content-Disposition", "attachment;filename="+new String("布草洗涤清单.xlsx".getBytes(),"ISO-8859-1"));
+				ServletOutputStream outputStream = response.getOutputStream();
+				linenService.exportExcel(linen,outputStream);
+				if(outputStream!=null){
+					outputStream.close();
+				}
+			}
+		}catch(Exception e){
+			
+		}
 	}
 	/**
 	 * 报废布草

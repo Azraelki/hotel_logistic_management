@@ -17,14 +17,17 @@
   	  			<%-- <input type="hidden" id="pageNo" name="pageNo" value="${pageNo }"> --%>
   				<input type="hidden" id="poId" name="purchaseOrder.id" value="${purchaseOrder.id }">
   				<input type="hidden" id="eId" name="purchaseOrder.employeeId.id" value="${purchaseOrder.employeeId.id }">
-  				<label for="eName" class="control-label col-xs-2">负责人</label>
+  				<label for="eName" class="control-label col-xs-1">负责人</label>
   				<div class="col-xs-3">
   					<input class="form-control" type="text" id="eName" name="purchaseOrder.employeeId.name" value="${purchaseOrder.employeeId.name }" readonly="readonly">
   				</div>
-  				<label for="date" class="control-label col-xs-2">日&nbsp;期</label>
+  				<label for="date" class="control-label col-xs-1">日&nbsp;期</label>
   	  			<div class="col-xs-3">
   	  				<input  class="form-control" type="date" id="date" name="temDate" readonly="readonly">
   	  				<input class="form-control" type="hidden" value="${purchaseOrder.date }" name="purchaseOrder.date" id="poDate">
+  	  			</div>
+  	  			<div class="col-xs-2">
+  	  				<button id="export" class="btn btn-default">导出申购单</button>
   	  			</div>
   	  			<div class="col-xs-2">
   	  				<button id="back" class="btn btn-default">返回</button>
@@ -149,6 +152,10 @@
 					$("#list_info").attr("action",url.replace("purchaseinfo_info","purchaseorder_detail"));
 					$("#list_info").submit();
 				}
+			});
+			$("#export").click(function(e){
+				e.preventDefault();
+				window.open("${path}/purchase/purchaseorder_exportExcel.action?purchaseOrder.id="+$("#poId").val());
 			});
 		});
 	</script>

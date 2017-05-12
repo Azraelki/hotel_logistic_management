@@ -3,10 +3,12 @@ package cn.azrael.main.linen.service.impl;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
 
 import org.springframework.stereotype.Service;
 
 import cn.azrael.main.core.service.impl.BaseServiceImpl;
+import cn.azrael.main.core.util.ExcelUtil;
 import cn.azrael.main.linen.dao.LinenDao;
 import cn.azrael.main.linen.dao.LinensInfoDao;
 import cn.azrael.main.linen.entity.Linen;
@@ -37,5 +39,9 @@ public class LinenServiceImpl extends BaseServiceImpl<Linen> implements LinenSer
 			ls.setLinenId(linen);
 			linensInfoDao.save(ls);
 		}
+	}
+	@Override
+	public void exportExcel(Linen linen, ServletOutputStream outputStream) {
+		ExcelUtil.exportLinenExcel(linen, outputStream);
 	}
 }

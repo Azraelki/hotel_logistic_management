@@ -3,8 +3,11 @@ package cn.azrael.main.purchase.action;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletOutputStream;
+import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
+import org.apache.struts2.ServletActionContext;
 
 import com.opensymphony.xwork2.ActionContext;
 
@@ -73,6 +76,26 @@ public class PurchaseOrderAction extends BaseAction{
 			throw new Exception(e.getMessage());
 		}
 		return "change";
+	}
+	/**
+	 * 导出洗涤单
+	 */
+	public void exportExcel(){
+		try{
+			if(purchaseOrder!=null && purchaseOrder.getId()!=null){
+				purchaseOrder = purchaseOrderService.findObjectById(purchaseOrder.getId());
+				HttpServletResponse response = ServletActionContext.getResponse();
+				response.setContentType("application/x-execl");
+				response.setHeader("Content-Disposition", "attachment;filename="+new String("采购清单.xlsx".getBytes(),"ISO-8859-1"));
+				ServletOutputStream outputStream = response.getOutputStream();
+				purchaseOrderService.exportExcel(purchaseOrder,outputStream);
+				if(outputStream!=null){
+					outputStream.close();
+				}
+			}
+		}catch(Exception e){
+			
+		}
 	}
 	/**
 	 * 清单详情
