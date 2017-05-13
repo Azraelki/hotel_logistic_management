@@ -36,8 +36,11 @@
     <include file="cn/azrael/main/linen/config/linen-struts.xml"></include>
     <!-- purchase -->
     <include file="cn/azrael/main/purchase/config/purchase-struts.xml"></include>
-    <!-- food -->
+    <!-- food
     <include file="cn/azrael/main/food/config/food-struts.xml"></include>
+    -->
     <!-- facilitie -->
     <include file="cn/azrael/main/facilitie/config/facilitie-struts.xml"></include>
+	<!-- system -->
+    <include file="cn/azrael/main/system/config/system-struts.xml"></include>
 </struts>
