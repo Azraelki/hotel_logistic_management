@@ -11,6 +11,7 @@ GRANT SELECT, INSERT, UPDATE, DELETE ON hotel.* TO 'hoteluser'@'localhost' IDENT
 CREATE TABLE jobs(
 	`j_id` INT,
 	`j_name` VARCHAR(20),
+	`j_task` VARCHAR(20),
 	PRIMARY KEY(`j_id`)
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
 
@@ -128,6 +129,19 @@ CREATE TABLE employee_works(
     KEY `idx_ew_date` (`ew_date`),
     PRIMARY KEY(`ew_id`)
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
+
+CREATE TABLE clean_plan(
+	`cp_id` VARCHAR(32),
+	`e_id` VARCHAR(32),
+	`cp_content` VARCHAR(30),
+	`cp_begin` REAL,
+	`cp_end` REAL,
+	`cp_flag` BOOL,
+	CONSTRAINT `fk_cp_e_id` FOREIGN KEY(`e_id`) REFERENCES employee(`e_id`),
+	KEY `idx_cp_begin` (`cp_begin`),
+	KEY `idx_cp_flag` (`cp_flag`),
+	PRIMARY KEY(`cp_id`)
+)ENGINE=INNODB CHARSET=utf8;
 
 CREATE TABLE food_show(
     `fs_id` VARCHAR(32),
