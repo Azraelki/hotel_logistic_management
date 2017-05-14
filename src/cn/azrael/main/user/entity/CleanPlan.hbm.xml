@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.azrael.main.user.entity">
+	<class name="CleanPlan" table="clean_plan">
+		<id name="id" type="string">
+			<column name="cp_id" length="32"></column>
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="content" column="cp_content" type="string" length="30" not-null="true"></property>
+		<property name="begin" column="cp_begin" type="double"  not-null="true"></property>
+		<property name="end" column="cp_end" type="double"   not-null="true"></property>
+		<many-to-one name="employeeId" class="Employee" column="e_id" not-null="true"></many-to-one>
+	</class>
+
+</hibernate-mapping>
+
+
+

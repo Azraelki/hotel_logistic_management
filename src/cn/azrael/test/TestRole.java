@@ -1,5 +1,7 @@
 package cn.azrael.test;
 
+import static org.junit.Assert.*;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.springframework.context.ApplicationContext;
@@ -47,5 +49,9 @@ public class TestRole {
 		role.setType(6);
 		role.setPrivilege("cygl");
 		rs.save(role);
+	}
+	@Test
+	public void testDelete() throws Exception {
+		rs.deleteByType(0);
 	}
 }

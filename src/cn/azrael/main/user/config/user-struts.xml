@@ -26,5 +26,12 @@
     		</result>
     		<result name="{1}">/WEB-INF/jsp/user/work_{1}.jsp</result>
     	</action>
+    	<action name="cleanplan_*" class="cn.azrael.main.user.action.CleanPlanAction" method="{1}">
+    		<result name="list" type="redirectAction">
+    			<param name="actionName">cleanplan_info</param>
+    			<param name="pageNo">${pageNo}</param>
+    		</result>
+    		<result name="{1}">/WEB-INF/jsp/user/cleanplan_{1}.jsp</result>
+    	</action>
     </package>
 </struts>

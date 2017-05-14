@@ -18,11 +18,13 @@ import cn.azrael.main.user.dao.EmployeeDao;
 import cn.azrael.main.user.dao.EmployeeWorkDao;
 import cn.azrael.main.user.dao.JobDao;
 import cn.azrael.main.user.dao.UserDao;
+import cn.azrael.main.user.entity.CleanPlan;
 import cn.azrael.main.user.entity.Employee;
 import cn.azrael.main.user.entity.EmployeeWork;
 import cn.azrael.main.user.entity.Job;
 import cn.azrael.main.user.entity.Role;
 import cn.azrael.main.user.entity.User;
+import cn.azrael.main.user.service.CleanPlanService;
 import cn.azrael.main.user.service.EmployeeService;
 import cn.azrael.main.user.service.EmployeeWorkService;
 import cn.azrael.main.user.service.JobService;
@@ -31,10 +33,14 @@ import cn.azrael.main.user.service.UserService;
 public class TestUserModel {
 	private ApplicationContext ac;
 	private UserService userService;
+	private EmployeeService es;
+	private CleanPlanService cps;
 	@Before
 	public void loadCtx(){
 		ac = new ClassPathXmlApplicationContext(new String[] {"classpath:spring.xml"});
 		userService = (UserService) ac.getBean("userService");
+		es = (EmployeeService) ac.getBean("employeeService");
+		cps = (CleanPlanService) ac.getBean("cleanPlanService");
 	}
 	@Test
 	public void testFindObject(){
@@ -130,5 +136,14 @@ public class TestUserModel {
 		User user = userService.findObjects().get(0);
 		List<Role> l = userService.findRoleByUser(user);
 		System.out.println(l);
+	}
+	@Test
+	public void testCleanPlan()throws Exception{
+		CleanPlan cp = new CleanPlan();
+		cp.setEmployeeId(es.findObjects().get(0));
+		cp.setContent("楼层窗台清理");
+		cp.setBegin(1490976000.0);
+		cp.setEnd(1491062400.0);
+		cps.save(cp);
 	}
 }

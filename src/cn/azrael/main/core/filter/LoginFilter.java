@@ -88,6 +88,16 @@ public class LoginFilter implements Filter{
 					}
 				}else if(uri.contains("/sys/home")){
 					chain.doFilter(request, response);
+				}else if(uri.contains("/system")){
+					if(pc.isAccessible(user, "xtwh")){
+						//放行
+						System.out.println("系统维护");
+						chain.doFilter(request, response);
+					}else{
+						//没有权限，跳转到没有权限提示
+						System.out.println("没有权限");
+						response.sendRedirect(request.getContextPath()+"/sys/login_toNoPermissionUI.action");
+					}
 				}
 			}else{
 				//没有登录，跳转到登录页面

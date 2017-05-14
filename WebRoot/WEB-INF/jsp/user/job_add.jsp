@@ -23,8 +23,15 @@
     				<span id="jNameMessage" class="col-xs-6"></span>
     			</div>
     			<div class="from-group row">
+    				<label for="jTask" class="col-xs-2 control-label">职位&nbsp;描述</label>
+    				<div class="col-xs-4">
+    					<input type="text" id="jTask" name="job.task" class="form-control" placeholder="请输入职位对应的任务">
+    				</div>
+    				<span id="jTaskMessage" class="col-xs-6"></span>
+    			</div>
+    			<div class="from-group row">
     				<div class="col-xs-9 pull-right">
-    					<input type="reset" class="btn btn-default" value="重    置">
+    					<input type="button" class="btn btn-default" onclick="javascript:history.go(-1)" value="取  消">
     					<input id="submit" type="submit" class="btn btn-default" value="添加职位">
     					<span id="message" class="text-success">${message }</span>
     				</div>
@@ -38,8 +45,7 @@
     			$("#message").text("");
     		});
     		$("#addForm").submit(function(){
-    			return validate($("#jName"), textNotNull, $("#jNameMessage"), "职务不能为空");
-    			return false;
+    			return validate($("#jName"), textNotNull, $("#jNameMessage"), "职务不能为空") && validate($("#jTask"), textNotNull, $("#jTaskMessage"), "职务描述不能为空");
     		});
     	});
     </script>

@@ -4,43 +4,35 @@
 <!DOCTYPE HTML>
 <html>
   <head>
-    <title>职务信息</title>
+    <title>roleInfo</title>
     <jsp:include page="/common/header.jsp"></jsp:include>
     <link rel="stylesheet" href="${path }/css/childframe.css">
   </head>
   	
   <body>
-  	<form id="list_info" action="" title="${path }/user/job_info.action" method="post" enctype="multipart/form-data">
-  	  <div class="row">
-  	  	<div class="col-xs-2">
-		  	  <c:if test="${SYS_USER.type == 1 }">
-	       	  		<a href="add" title="" class="btn btn-default btn-block">新&nbsp;增</a>
-		      </c:if>
-  	  	</div>
-  	  </div>
+  	<form id="list_info" action="" title="${path }/system/system_roleInfo.action" method="post" enctype="multipart/form-data">
     <table class="table table-striped table-hover ">
 	  <thead>
 	    <tr>
-	      <%--<th><input id="checkbox" type="checkbox"></th>--%>
-	      <th>职务名称</th>
-	      <th>工作内容</th>
-	      <c:if test="${SYS_USER.type == 1 }">
+	      <th>职务</th>
+	      <th>权限范围</th>
 	      <th>操作</th>
-	      </c:if>
 	    </tr>
 	  </thead>
 	  <tbody>
 	  	<c:forEach var="item" items="${pageResult.items }" varStatus="status">
 		    <tr>
-		      <%--<td><input name="selectedRow" type="checkbox" value="${item.id }"></td>--%>
 		      <td>${item.name }</td>
-		      <td>${item.task }</td>
-		      <c:if test="${SYS_USER.type == 1 }">
 		      <td>
-		      	<a href="editUI" title="${item.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">编辑</a>
-		      	<a href="delete" title="${item.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">删除</a>
+		      	<c:forEach var="role" items="${roleList }">
+		      		<c:choose>
+			      		<c:when test="${role.type == item.id }">${roleMap[role.privilege]}&nbsp;</c:when>
+			      	</c:choose>
+		      	</c:forEach>
 		      </td>
-		      </c:if>
+		      <td>
+		      	<a href="roleEditUI" title="${item.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">编辑</a>
+		      </td>
 		    </tr>
 	    </c:forEach>
 	  </tbody>
@@ -70,7 +62,6 @@
 </div>
 	<script>
 		$(function(){
-			allCheck();
 			deleteAndEditInfo("job");
 		});
 	</script>

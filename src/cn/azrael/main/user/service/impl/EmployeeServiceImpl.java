@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import cn.azrael.main.core.service.impl.BaseServiceImpl;
 import cn.azrael.main.core.util.QueryHelper;
 import cn.azrael.main.user.dao.EmployeeDao;
+import cn.azrael.main.user.dao.RoleDao;
 import cn.azrael.main.user.dao.UserDao;
 import cn.azrael.main.user.entity.Employee;
 import cn.azrael.main.user.entity.User;
@@ -17,6 +18,11 @@ import cn.azrael.main.user.service.EmployeeService;
 public class EmployeeServiceImpl extends BaseServiceImpl<Employee> implements EmployeeService{
 	private EmployeeDao employeeDao;
 	private UserDao userDao;
+	private RoleDao roleDao;
+	@Resource
+	public void setRoleDao(RoleDao roleDao) {
+		this.roleDao = roleDao;
+	}
 	@Resource
 	public void setUserDao(UserDao userDao) {
 		this.userDao = userDao;
@@ -40,12 +46,13 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee> implements Em
 	public void addEmployeeAndSaveUser(Employee employee) {
 		int num = employee.getJobId().getId();
 		employeeDao.save(employee);
-		if(num == 1 || num == 2 || num == 5 || num == 6){
+		
+		if(roleDao.findByType(num)){
 			employee = findByName(employee.getName());
 			User u = new User();
 			u.setEmployeeId(employee);
 			u.setType(num);
-			u.setPassword("123456");
+			u.setPassword("e10adc3949ba59abbe56e057f20f883e");
 			userDao.save(u);
 		}
 		
@@ -54,7 +61,7 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee> implements Em
 	public void deleteAndDeleteUser(String id) {
 		Employee employee = employeeDao.findObjectById(id);
 		int num = employee.getJobId().getId();
-		if(num == 1 || num == 2 || num == 5 || num == 6){
+		if(roleDao.findByType(num)){
 			User user = userDao.findByEmployeeId(employee.getId());
 			if(user!=null)
 				userDao.delete(user.getId());
@@ -67,17 +74,17 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee> implements Em
 		employeeDao.update(employee);
 		User u = userDao.findByEmployeeId(employee.getId());
 		if(u!=null){
-			if(num!=u.getType() && (num == 1 || num == 2 || num == 5 || num == 6)){
+			if(num!=u.getType() && (roleDao.findByType(num))){
 				u.setType(num);
 				userDao.update(u);
 			}else if(num!=u.getType()){
 				userDao.delete(u.getId());
 			}
 		}else{
-			if(num == 1 || num == 2 || num == 5 || num == 6){
+			if(roleDao.findByType(num)){
 				u = new User();
 				u.setEmployeeId(employee);
-				u.setPassword("123456");
+				u.setPassword("e10adc3949ba59abbe56e057f20f883e");
 				u.setType(num);
 				userDao.save(u);
 			}

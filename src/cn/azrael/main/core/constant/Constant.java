@@ -12,6 +12,7 @@ public class Constant {
 	public static String PRIVILEGE_CGGL = "cggl";
 	public static String PRIVILEGE_CYGL = "cygl";
 	public static String PRIVILEGE_SSWH = "sswh";
+	public static String PRIVILEGE_XTWH = "xtwh";
 	
 	public static Map<String,String> PRIVILEGE_MAP = new HashMap<String,String>();
 	static{
@@ -20,5 +21,6 @@ public class Constant {
 		PRIVILEGE_MAP.put(PRIVILEGE_CGGL, "采购管理");
 		PRIVILEGE_MAP.put(PRIVILEGE_CYGL, "餐饮管理");
 		PRIVILEGE_MAP.put(PRIVILEGE_SSWH, "设施维护");
+		PRIVILEGE_MAP.put(PRIVILEGE_XTWH, "系统维护");
 	}
 }

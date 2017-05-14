@@ -46,7 +46,7 @@
 		          <div class="panel-body">
 		            <ul class="nav nav-pills nav-stacked">
 		              <li><a title="job_info" href="${path }/user/job_info.action">职务信息</a></li>
-		              <li><a title="job_add" href="${path }/user/job_add.action">职务录入</a></li>
+		              <%--<li><a title="job_add" href="${path }/user/job_add.action">职务录入</a></li>--%>
 		            </ul>
 		          </div>
 		        </div>
@@ -55,15 +55,17 @@
 		        <div class="panel-heading">
 		          <h4 class="panel-title">
 		            <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree">
-		               <span class="glyphicon glyphicon-align-justify"></span>&nbsp;工&nbsp;作&nbsp;量<span class="caret"></span>
+		               <span class="glyphicon glyphicon-align-justify"></span>&nbsp;工&nbsp;作&nbsp;状&nbsp;况<span class="caret"></span>
 		            </a>
 		          </h4>
 		        </div>
 		        <div id="collapseThree" class="panel-collapse collapse">
 		          <div class="panel-body">
 		            <ul class="nav nav-pills nav-stacked">
-		              <li><a title="work_info" href="${path }/user/work_info.action">工作信息</a></li>
-		              <li><a title="work_add" href="${path }/user/work_add.action">工作信息录入</a></li>
+		              <li><a title="work_info" href="${path }/user/work_info.action">员工做房信息</a></li>
+		              <li><a title="work_add" href="${path }/user/work_add.action">做房信息录入</a></li>
+		              <li><a title="cleanplan_info" href="${path }/user/cleanplan_info.action">计划卫生安排</a></li>
+		              <li><a title="cleanplan_add" href="${path }/user/cleanplan_add.action">计划卫生录入</a></li>
 		            </ul>
 		          </div>
 		        </div>

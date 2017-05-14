@@ -10,6 +10,7 @@
 			<generator class="assigned"></generator>
 		</id>
 		<property name="name" column="j_name" type="string" length="20" not-null="true"></property>
+		<property name="task" column="j_task" type="string" length="20" not-null="true"></property>
 	</class>
 
 </hibernate-mapping>

@@ -37,22 +37,28 @@ public class JobAction extends BaseAction{
 	 *添加职位信息 
 	 */
 	public String add() throws Exception{
-		if(job!=null){
+		if(job!=null&&job.getName()!=null){
 			System.out.println(job);
 			try {
-				int count = jobService.findObjects().size() + 1;
-				job.setId(count);
+				int max = 0;
+				for (Job j : jobService.findObjects()) {
+					if(j.getId() > max){
+						max = j.getId();
+					}
+				}
+				job.setId(max+1);
 				jobService.save(job);
 			} catch (Exception e) {
 				message = "添加失败";
 				throw new Exception(e.getMessage());
 			}
 			message = "添加成功！";
+			return "list";
 		}
 		return "add";
 	}
 	/**
-	 * 编辑员工页面
+	 * 编辑页面
 	 */
 	public String editUI(){
 		if(job!=null && job.getId()!=null){
@@ -61,7 +67,7 @@ public class JobAction extends BaseAction{
 		return "editUI";
 	}
 	/**
-	 * 编辑员工
+	 * 编辑
 	 */
 	public String edit(){
 		try {
@@ -74,13 +80,13 @@ public class JobAction extends BaseAction{
 		return "list";
 	}
 	/**
-	 * 删除单个员工
+	 * 删除单个
 	 */
 	public String delete() throws Exception{
 		if(job!=null && job.getId()!=null){
 			try {
 				System.out.println(job.getId());
-				jobService.delete(job.getId());
+				jobService.deleteAndRole(job.getId());
 			} catch (Exception e) {
 				throw new Exception(e.getMessage());
 			}
@@ -88,13 +94,13 @@ public class JobAction extends BaseAction{
 		return "list";
 	}
 	/**
-	 * 批量删除员工
+	 * 批量删除
 	 */
 	public String deleteSelected() throws Exception{
 		if(selectedRow!=null){
 			for(String s:selectedRow){
 				try {
-					jobService.delete(Integer.parseInt(s));
+					jobService.deleteAndRole(Integer.parseInt(s));
 				} catch (Exception e) {
 					throw new Exception(e.getMessage());
 				}

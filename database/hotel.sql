@@ -136,7 +136,6 @@ CREATE TABLE clean_plan(
 	`cp_content` VARCHAR(30),
 	`cp_begin` REAL,
 	`cp_end` REAL,
-	`cp_flag` BOOL,
 	CONSTRAINT `fk_cp_e_id` FOREIGN KEY(`e_id`) REFERENCES employee(`e_id`),
 	KEY `idx_cp_begin` (`cp_begin`),
 	KEY `idx_cp_flag` (`cp_flag`),

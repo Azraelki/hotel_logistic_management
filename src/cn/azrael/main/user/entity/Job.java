@@ -7,6 +7,7 @@ public class Job implements Serializable{
 	
 	private Integer id;
 	private String name;
+	private String task;
 	public Integer getId() {
 		return id;
 	}
@@ -18,6 +19,13 @@ public class Job implements Serializable{
 	}
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public String getTask() {
+		return task;
+	}
+	public void setTask(String task) {
+		this.task = task;
 	}
 	@Override
 	public String toString() {

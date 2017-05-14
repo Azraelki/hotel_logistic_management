@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+          "-//Apache Software Foundation//DTD Struts Configuration 2.0//EN"
+          "http://struts.apache.org/dtds/struts-2.0.dtd">
+<struts>
+    <package name="system-action" namespace="/system" extends="json-default">
+    	
+       <action name="system_*" class="cn.azrael.main.system.action.SystemAction" method="{1}">
+    		<result name="default">/WEB-INF/jsp/system/system_main.jsp</result>
+    		<result name="rolelist" type="redirectAction">
+    			<param name="actionName">system_roleInfo</param>
+    			<param name="pageNo">${pageNo}</param>
+    		</result>
+    		<result name="{1}">/WEB-INF/jsp/system/system_{1}.jsp</result>
+    	</action>
+    	<!--<action name="facilitiefix_*" class="cn.azrael.main.facilitie.action.FacilitieFixAction" method="{1}">
+    		<result name="list" type="redirectAction">
+    			<param name="actionName">facilitiefix_info</param>
+    			<param name="pageNo">${pageNo}</param>
+    		</result>
+    		<result name="{1}">/WEB-INF/jsp/facilitie/facilitiefix_{1}.jsp</result>
+    	</action> -->
+    </package>
+</struts>
