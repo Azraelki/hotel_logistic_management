@@ -21,15 +21,15 @@
 		        <div class="panel-heading">
 		          <h4 class="panel-title">
 		            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-		              <span class="glyphicon glyphicon-align-justify"></span>&nbsp;采购&nbsp;处理<span class="caret"></span>
+		              <span class="glyphicon glyphicon-align-justify"></span>&nbsp;申购&nbsp;处理<span class="caret"></span>
 		            </a>
 		          </h4>
 		        </div>
 		        <div id="collapseOne" class="panel-collapse collapse in">
 		          <div class="panel-body">
 		            <ul class="nav nav-pills nav-stacked">
-		              <li><a title="purchaseorder_change" href="${path }/purchase/purchaseorder_change.action">采购单处理</a></li>
-		               <li><a title="purchaseinfo_info" href="${path }/purchase/purchaseinfo_info.action">往日采购查询</a></li>
+		              <li><a title="purchaseorder_change" href="${path }/purchase/purchaseorder_change.action">申购单处理</a></li>
+		               <li><a title="purchaseinfo_info" href="${path }/purchase/purchaseinfo_info.action">往日申购查询</a></li>
 		            </ul>
 		          </div>
 		        </div>
@@ -38,15 +38,15 @@
 		        <div class="panel-heading">
 		          <h4 class="panel-title">
 		            <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo">
-		              <span class="glyphicon glyphicon-align-justify"></span>&nbsp;物品&nbsp;采购<span class="caret"></span>
+		              <span class="glyphicon glyphicon-align-justify"></span>&nbsp;物品&nbsp;申购<span class="caret"></span>
 		            </a>
 		          </h4>
 		        </div>
 		        <div id="collapseTwo" class="panel-collapse collapse">
 		          <div class="panel-body">
 		            <ul class="nav nav-pills nav-stacked">
-		              <li><a title="purchaseorder_info" href="${path }/purchase/purchaseorder_info.action">采购订单查询</a></li>
-		              <li><a title="purchaseorder_add" href="${path }/purchase/purchaseorder_add.action">采购订单录入</a></li>
+		              <li><a title="purchaseorder_info" href="${path }/purchase/purchaseorder_info.action">申购订单查询</a></li>
+		              <li><a title="purchaseorder_add" href="${path }/purchase/purchaseorder_add.action">申购订单录入</a></li>
 		            </ul>
 		          </div>
 		        </div>
