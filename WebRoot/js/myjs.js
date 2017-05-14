@@ -29,7 +29,7 @@ function deleteAndEditInfo(item){
 		e.preventDefault();
 		var id = $(this).attr("title");
 		var href = $(this).attr("href");
-		var myUrl = url.replace("_info","_"+href);
+		var myUrl = url.replace(/_*info/,"_"+href);
 		var pageNo = $("#pagination li.active a:first").text();
 		if($(this).attr("id") == "serach"){
 			pageNo = 1;
