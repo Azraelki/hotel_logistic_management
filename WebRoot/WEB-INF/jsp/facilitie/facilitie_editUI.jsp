@@ -19,7 +19,7 @@
     	<form id="editForm" action="${path }/facilitie/facilitie_edit.action" class="form-horizontal" method="post" enctype="multipart/form-data">
     		<fieldset>
     			<div class="from-group row">
-    				<label for="fName" class="col-xs-2 control-label">设施&nbsp;名称</label>
+    				<label for="fName" class="col-xs-2 control-label">物资&nbsp;名称</label>
     				<div class="col-xs-4">
     					<input type="hidden" name="pageNo" value="${pageNo }">
     					<input type="hidden" name="facilitie.id" value="${facilitie.id }">
@@ -28,16 +28,20 @@
     				<span class="col-xs-6"></span>
     			</div>
     			<div class="from-group row">
-    				<label for="fType" class="col-xs-2 control-label">设施&nbsp;类型</label>
+    				<label for="fType" class="col-xs-2 control-label">物资&nbsp;类型</label>
     				<div class="col-xs-4">
     					<select id="fType"  name="facilitie.type" class="form-control">
 			  	  			<c:choose>
-			  	  				<c:when test="${facilitie.type == 1 }"><option value="${1 }" selected="selected">布草</option>></c:when>
-			  	  				<c:otherwise><option value="${1 }">布草</option></c:otherwise>
+			  	  				<c:when test="${facilitie.type == 1 }"><option value="${1 }" selected="selected">布草类</option>></c:when>
+			  	  				<c:otherwise><option value="${1 }">布草类</option></c:otherwise>
 			  	  			</c:choose>
 			  	  			<c:choose>
-			  	  				<c:when test="${facilitie.type == 2 }"><option value="${2 }"  selected="selected">其他</option>></c:when>
-			  	  				<c:otherwise><option value="${2 }">其他</option></c:otherwise>
+			  	  				<c:when test="${facilitie.type == 2 }"><option value="${2 }"  selected="selected">设施类</option>></c:when>
+			  	  				<c:otherwise><option value="${2 }">设施类</option></c:otherwise>
+			  	  			</c:choose>
+			  	  			<c:choose>
+			  	  				<c:when test="${facilitie.type == 3 }"><option value="${3 }"  selected="selected">消耗类</option>></c:when>
+			  	  				<c:otherwise><option value="${3 }">消耗类</option></c:otherwise>
 			  	  			</c:choose>
 			  	  		</select>
     				</div>

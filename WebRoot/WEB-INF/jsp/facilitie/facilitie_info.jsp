@@ -13,18 +13,22 @@
   	<form id="list_info" action="" title="${path }/facilitie/facilitie_info.action" method="post" enctype="multipart/form-data">
   	  <div class="row">
   	  	<div class="col-xs-3">
-  	  		<input name="facilitie.name" value="${facilitie.name }" class="form-control" type="text" id="serachContent" placeholder="请输入查询设施名称">
+  	  		<input name="facilitie.name" value="${facilitie.name }" class="form-control" type="text" id="serachContent" placeholder="请输入查询物资名称">
   	  	</div>
   	  	<div class="col-xs-3">
   	  		<select name="facilitie.type" class="form-control">
   	  			<option value="${0 }">请选择</option>
   	  			<c:choose>
-  	  				<c:when test="${facilitie.type == 1 }"><option value="${1 }" selected="selected">布草</option>></c:when>
-  	  				<c:otherwise><option value="${1 }">布草</option></c:otherwise>
+  	  				<c:when test="${facilitie.type == 1 }"><option value="${1 }" selected="selected">布草类</option>></c:when>
+  	  				<c:otherwise><option value="${1 }">布草类</option></c:otherwise>
   	  			</c:choose>
   	  			<c:choose>
-  	  				<c:when test="${facilitie.type == 2 }"><option value="${2 }"  selected="selected">其他</option>></c:when>
-  	  				<c:otherwise><option value="${2 }">其他</option></c:otherwise>
+  	  				<c:when test="${facilitie.type == 2 }"><option value="${2 }"  selected="selected">设施类</option>></c:when>
+  	  				<c:otherwise><option value="${2 }">设施类</option></c:otherwise>
+  	  			</c:choose>
+  	  			<c:choose>
+  	  				<c:when test="${facilitie.type == 3 }"><option value="${3 }"  selected="selected">消耗类</option>></c:when>
+  	  				<c:otherwise><option value="${3 }">消耗类</option></c:otherwise>
   	  			</c:choose>
   	  		</select>
   	  	</div>
@@ -36,8 +40,8 @@
 	  <thead>
 	    <tr>
 	      <th>列数</th>
-	      <th>设施名称</th>
-	      <th>设施类型</th>
+	      <th>物资名称</th>
+	      <th>物资类型</th>
 	      <th>正常数量</th>
 	      <th>损坏数量</th>
 	      <th>总数</th>
@@ -52,7 +56,8 @@
 		      <td>
 		      	<c:choose>
 		      		<c:when test="${item.type == 1 }">布草 </c:when>
-		      		<c:otherwise>其他 </c:otherwise>
+		      		<c:when test="${item.type == 2 }">设施 </c:when>
+		      		<c:when test="${item.type == 3 }">消耗品 </c:when>
 		      	</c:choose>
 		      </td>
 		      <td>${item.normalNum }</td>

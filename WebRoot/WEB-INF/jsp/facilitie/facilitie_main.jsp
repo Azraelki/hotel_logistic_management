@@ -21,15 +21,15 @@
 		        <div class="panel-heading">
 		          <h4 class="panel-title">
 		            <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne">
-		              <span class="glyphicon glyphicon-align-justify"></span>&nbsp;设施&nbsp;信息<span class="caret"></span>
+		              <span class="glyphicon glyphicon-align-justify"></span>&nbsp;物资&nbsp;信息<span class="caret"></span>
 		            </a>
 		          </h4>
 		        </div>
 		        <div id="collapseOne" class="panel-collapse collapse in">
 		          <div class="panel-body">
 		            <ul class="nav nav-pills nav-stacked">
-		              <li><a title="facilitie_info" href="${path }/facilitie/facilitie_info.action">设施库存查询</a></li>
-		              <li><a title="facilitie_add" href="${path }/facilitie/facilitie_add.action">设施信息添加</a></li>
+		              <li><a title="facilitie_info" href="${path }/facilitie/facilitie_info.action">物资库存查询</a></li>
+		              <li><a title="facilitie_add" href="${path }/facilitie/facilitie_add.action">物资信息添加</a></li>
 		            </ul>
 		          </div>
 		        </div>
