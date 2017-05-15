@@ -161,6 +161,13 @@
         <artifactId>spring-orm</artifactId>  
         <version>3.1.2.RELEASE</version>  
     </dependency>
+    <!-- aspectjrt aop注解方式配置-->
+	<dependency>
+	    <groupId>org.aspectj</groupId>
+	    <artifactId>aspectjrt</artifactId>
+	    <version>1.8.10</version>
+	</dependency>
+    
 <!--end spring  -->
     <dependency>
       <groupId>org.glassfish</groupId>
