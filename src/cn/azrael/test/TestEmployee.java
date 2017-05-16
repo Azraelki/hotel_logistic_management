@@ -21,4 +21,9 @@ public class TestEmployee {
 		EmployeeService es = (EmployeeService) ac.getBean("employeeService");
 		es.findObjects();
 	}
+	@Test
+	public void test2(){
+		EmployeeService es = (EmployeeService) ac.getBean("employeeService");
+		es.findByName("aspect");
+	}
 }

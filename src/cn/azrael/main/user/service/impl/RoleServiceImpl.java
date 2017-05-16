@@ -7,6 +7,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import cn.azrael.main.core.exception.ServiceException;
+import cn.azrael.main.core.log.DescripLog;
 import cn.azrael.main.core.service.impl.BaseServiceImpl;
 import cn.azrael.main.core.util.QueryHelper;
 import cn.azrael.main.user.dao.RoleDao;
@@ -21,8 +23,9 @@ public class RoleServiceImpl extends BaseServiceImpl<Role> implements RoleServic
 		setBaseDao(roleDao);
 		this.roleDao = roleDao;
 	}
+	@DescripLog(desc="根据type删除权限")
 	@Override
-	public void deleteByType(int type) {
+	public void deleteByType(int type) throws ServiceException{
 		roleDao.deleteByType(type);
 	}
 	@Override

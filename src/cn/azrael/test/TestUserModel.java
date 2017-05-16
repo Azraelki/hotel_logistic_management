@@ -13,6 +13,7 @@ import org.junit.Test;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
+import cn.azrael.main.core.exception.ServiceException;
 import cn.azrael.main.core.util.QueryHelper;
 import cn.azrael.main.user.dao.EmployeeDao;
 import cn.azrael.main.user.dao.EmployeeWorkDao;
@@ -54,7 +55,7 @@ public class TestUserModel {
 		//System.out.println(es.findByName("1234"));
 	}
 	@Test
-	public void testDataImport() throws ParseException{
+	public void testDataImport() throws ParseException, Exception{
 		EmployeeService es = (EmployeeService) ac.getBean("employeeService");
 		EmployeeWorkService ews = (EmployeeWorkService) ac.getBean("employeeWorkService");
 		Employee e = new Employee();
@@ -114,7 +115,7 @@ public class TestUserModel {
 		js.findObjects();
 	}
 	@Test
-	public void testImportJob(){
+	public void testImportJob() throws Exception{
 		JobService js = (JobService) ac.getBean("jobService");
 		Job job = new Job();
 		Map<Integer, String> m = new HashMap<Integer, String>();

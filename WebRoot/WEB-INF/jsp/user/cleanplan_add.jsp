@@ -23,14 +23,14 @@
     				<span class="col-xs-6"></span>
     			</div>
     			<div class="from-group row">
-    				<label for="cpContent" class="col-xs-2 control-label">退房&nbsp;打扫</label>
+    				<label for="cpContent" class="col-xs-2 control-label">计划&nbsp;内容</label>
     				<div class="col-xs-4">
     					<input type="text" name="cleanPlan.content" id="cpContent" class="form-control" placeholder="请输入计划卫生内容">
     				</div>
     				<span class="col-xs-6"></span>
     			</div>
     			<div class="from-group row">
-    				<label for="dateAt1" class="col-xs-2 control-label">日期</label>
+    				<label for="dateAt1" class="col-xs-2 control-label">开始时间</label>
     				<div class="col-xs-4">
     					<input type="date"  id="temDate1" name="temDate" class="form-control">
     					<input type="hidden" name="cleanPlan.begin" id="dateAt1">
@@ -38,7 +38,7 @@
     				<span class="col-xs-6"></span>
     			</div>
     			<div class="from-group row">
-    				<label for="dateAt2" class="col-xs-2 control-label">日期</label>
+    				<label for="dateAt2" class="col-xs-2 control-label">截止日期</label>
     				<div class="col-xs-4">
     					<input type="date"  id="temDate2" name="temDate" class="form-control">
     					<input type="hidden" name="cleanPlan.end" id="dateAt2">

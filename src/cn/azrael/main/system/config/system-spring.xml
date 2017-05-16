@@ -8,8 +8,8 @@
         http://www.springframework.org/schema/beans/spring-beans.xsd
         http://www.springframework.org/schema/context
         http://www.springframework.org/schema/context/spring-context.xsd">
-	
+	<bean id="systemLogDao" class="cn.azrael.main.system.dao.impl.SystemLogDaoImpl" parent="baseDao"></bean>
 	<!--  配置注解扫描信息,扫描service-->
-	<context:component-scan base-package="cn.azrael.main.facilitie.service.impl"></context:component-scan>
+	<context:component-scan base-package="cn.azrael.main.system.service.impl"></context:component-scan>
 	
 </beans> 

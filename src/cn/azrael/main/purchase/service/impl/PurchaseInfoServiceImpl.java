@@ -4,6 +4,8 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
+import cn.azrael.main.core.exception.ServiceException;
+import cn.azrael.main.core.log.DescripLog;
 import cn.azrael.main.core.service.impl.BaseServiceImpl;
 import cn.azrael.main.facilitie.dao.FacilitieDao;
 import cn.azrael.main.facilitie.entity.Facilitie;
@@ -23,8 +25,9 @@ public class PurchaseInfoServiceImpl extends BaseServiceImpl<PurchaseInfo> imple
 		setBaseDao(purchaseInfoDao);
 		this.purchaseInfoDao = purchaseInfoDao;
 	}
+	@DescripLog(desc="修改PurchaseInfo并更新facilitie")
 	@Override
-	public void editAndUpdateFacilitie(PurchaseInfo purchaseInfo) {
+	public void editAndUpdateFacilitie(PurchaseInfo purchaseInfo) throws ServiceException{
 		//暂时保存新的传入信息
 		PurchaseInfo tem = purchaseInfo;
 		//获得新数值
@@ -52,8 +55,9 @@ public class PurchaseInfoServiceImpl extends BaseServiceImpl<PurchaseInfo> imple
 			facilitieDao.update(facilitie);
 		}
 	}
+	@DescripLog(desc="删除PurchaseInfo并更新facilitie")
 	@Override
-	public void deleteAndUpdateFacilitie(PurchaseInfo purchaseInfo) {
+	public void deleteAndUpdateFacilitie(PurchaseInfo purchaseInfo) throws ServiceException{
 		Facilitie facilitie = facilitieDao.findObjectById(purchaseInfo.getFacilitieId().getId());
 		facilitie.setNormalNum(facilitie.getNormalNum()-purchaseInfo.getPurchaseNum());
 		facilitieDao.update(facilitie);

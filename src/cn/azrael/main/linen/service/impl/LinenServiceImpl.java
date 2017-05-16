@@ -7,6 +7,8 @@ import javax.servlet.ServletOutputStream;
 
 import org.springframework.stereotype.Service;
 
+import cn.azrael.main.core.exception.ServiceException;
+import cn.azrael.main.core.log.DescripLog;
 import cn.azrael.main.core.service.impl.BaseServiceImpl;
 import cn.azrael.main.core.util.ExcelUtil;
 import cn.azrael.main.linen.dao.LinenDao;
@@ -27,8 +29,9 @@ public class LinenServiceImpl extends BaseServiceImpl<Linen> implements LinenSer
 		setBaseDao(linenDao);
 		this.linenDao = linenDao;
 	}
+	@DescripLog(desc="保存布草洗涤单和清单内容")
 	@Override
-	public void saveLinenAndLinensInfo(Linen linen, List<LinensInfo> linensInfo) {
+	public void saveLinenAndLinensInfo(Linen linen, List<LinensInfo> linensInfo) throws ServiceException{
 		//保存清单
 		linenDao.save(linen);
 		//保存清单详细
@@ -40,8 +43,9 @@ public class LinenServiceImpl extends BaseServiceImpl<Linen> implements LinenSer
 			linensInfoDao.save(ls);
 		}
 	}
+	@DescripLog(desc="导出布草洗涤清单")
 	@Override
-	public void exportExcel(Linen linen, ServletOutputStream outputStream) {
+	public void exportExcel(Linen linen, ServletOutputStream outputStream) throws ServiceException{
 		ExcelUtil.exportLinenExcel(linen, outputStream);
 	}
 }

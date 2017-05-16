@@ -174,6 +174,19 @@ CREATE TABLE facilitie_use(
 	PRIMARY KEY(`fu_id`)
 )ENGINE=INNODB DEFAULT CHARSET=utf8;
 
+CREATE TABLE sys_log(
+	`sl_id` VARCHAR(32),
+	`sl_classname` VARCHAR(200),
+	`sl_methodname` VARCHAR(200),
+	`sl_params` VARCHAR(200),
+	`sl_username` VARCHAR(10),
+	`sl_flag` INT,
+	`sl_desc` VARCHAR(20),
+	`sl_err` VARCHAR(4000),
+	`sl_date` REAL,
+	KEY `idx_sl_flag` (`sl_flag`),
+	PRIMARY KEY(`sl_id`)
+)ENGINE=INNODB CHARSET=utf8;
 -- admin
 INSERT INTO jobs(`j_id`,`j_name`) VALUES(1,'店长');
 INSERT INTO employee(`e_id`,`j_id`,`e_name`,`e_gender`,`e_age`,`e_phone_num`,`e_arrived_at`) VALUES('0987fff4508f43fbaed718e263442526','1','admin',FALSE,32,'13523453421',1402909113.628);

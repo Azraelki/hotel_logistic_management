@@ -5,6 +5,7 @@ import javax.annotation.Resource;
 import org.apache.struts2.ServletActionContext;
 
 import cn.azrael.main.core.constant.Constant;
+import cn.azrael.main.core.exception.ServiceException;
 import cn.azrael.main.user.entity.User;
 import cn.azrael.main.user.service.UserService;
 
@@ -22,7 +23,7 @@ public class HomeAction extends ActionSupport{
 		return "home";
 	}
 	//修改密码
-	public String json(){
+	public String json() throws ServiceException{
 		User user = (User) ServletActionContext.getRequest().getSession().getAttribute(Constant.USER);
 		if(old!=null && old.equals(user.getPassword())){
 			if(first!=null && second!=null){

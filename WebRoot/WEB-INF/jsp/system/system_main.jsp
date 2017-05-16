@@ -30,7 +30,7 @@
 		            <ul class="nav nav-pills nav-stacked">
 		              <li><a title="job_info" href="${path }/user/job_info.action">职务增添</a></li>
 		              <li><a title="system_roleInfo" href="${path }/system/system_roleInfo.action">权限分配</a></li>
-		           	  <li><a title="system_add" href="${path }/user/employee_add.action">日志查询</a></li>
+		           	  <li><a title="system_logInfo" href="${path }/system/system_logInfo.action">日志查询</a></li>
 		            </ul>
 		          </div>
 		        </div>

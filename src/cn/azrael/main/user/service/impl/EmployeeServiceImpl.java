@@ -3,9 +3,12 @@ package cn.azrael.main.user.service.impl;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.sql.rowset.serial.SerialException;
 
 import org.springframework.stereotype.Service;
 
+import cn.azrael.main.core.exception.ServiceException;
+import cn.azrael.main.core.log.DescripLog;
 import cn.azrael.main.core.service.impl.BaseServiceImpl;
 import cn.azrael.main.core.util.QueryHelper;
 import cn.azrael.main.user.dao.EmployeeDao;
@@ -42,11 +45,11 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee> implements Em
 		else
 			return null;
 	}
+	@DescripLog(desc="添加员工判断其职务增添相应的role")
 	@Override
-	public void addEmployeeAndSaveUser(Employee employee) {
+	public void addEmployeeAndSaveUser(Employee employee)throws ServiceException{
 		int num = employee.getJobId().getId();
 		employeeDao.save(employee);
-		
 		if(roleDao.findByType(num)){
 			employee = findByName(employee.getName());
 			User u = new User();
@@ -55,10 +58,10 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee> implements Em
 			u.setPassword("e10adc3949ba59abbe56e057f20f883e");
 			userDao.save(u);
 		}
-		
 	}
+	@DescripLog(desc="删除员工并删除其登陆功能")
 	@Override
-	public void deleteAndDeleteUser(String id) {
+	public void deleteAndDeleteUser(String id) throws ServiceException{
 		Employee employee = employeeDao.findObjectById(id);
 		int num = employee.getJobId().getId();
 		if(roleDao.findByType(num)){
@@ -68,8 +71,9 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee> implements Em
 		}
 		employeeDao.delete(employee.getId());
 	}
+	@DescripLog(desc="更新并判断其是否有必要更改登陆的权限")
 	@Override
-	public void updateAndUpdateUser(Employee employee) {
+	public void updateAndUpdateUser(Employee employee) throws ServiceException{
 		int num = employee.getJobId().getId();
 		employeeDao.update(employee);
 		User u = userDao.findByEmployeeId(employee.getId());

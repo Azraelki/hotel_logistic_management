@@ -9,6 +9,8 @@ import javax.servlet.ServletOutputStream;
 
 import org.springframework.stereotype.Service;
 
+import cn.azrael.main.core.exception.ServiceException;
+import cn.azrael.main.core.log.DescripLog;
 import cn.azrael.main.core.service.impl.BaseServiceImpl;
 import cn.azrael.main.core.util.ExcelUtil;
 import cn.azrael.main.core.util.QueryHelper;
@@ -37,8 +39,9 @@ public class PurchaseOrderServiceImpl extends BaseServiceImpl<PurchaseOrder> imp
 		setBaseDao(purchaseOrderDao);
 		this.purchaseOrderDao = purchaseOrderDao;
 	}
+	@DescripLog(desc="改变订单状态时更改设施的数目")
 	@Override
-	public void changeAndUpdate(PurchaseOrder purchaseOrder) {
+	public void changeAndUpdate(PurchaseOrder purchaseOrder) throws ServiceException{
 		QueryHelper queryHelper = new QueryHelper(PurchaseInfo.class, "pi");
 		purchaseOrder.setDealDate(new Date().getTime()/1000.0);
 		purchaseOrderDao.update(purchaseOrder);
@@ -52,8 +55,9 @@ public class PurchaseOrderServiceImpl extends BaseServiceImpl<PurchaseOrder> imp
 			facilitieDao.update(facilitie);
 		}
 	}
+	@DescripLog(desc="删除时更改设施的数目")
 	@Override
-	public void deleteAndUpdate(PurchaseOrder purchaseOrder) {
+	public void deleteAndUpdate(PurchaseOrder purchaseOrder) throws ServiceException{
 		QueryHelper queryHelper = new QueryHelper(PurchaseInfo.class, "pi");
 		purchaseOrder = purchaseOrderDao.findObjectById(purchaseOrder.getId());
 		if(purchaseOrder.getStatus() == 1){
@@ -68,9 +72,10 @@ public class PurchaseOrderServiceImpl extends BaseServiceImpl<PurchaseOrder> imp
 		}
 		purchaseOrderDao.delete(purchaseOrder.getId());
 	}
+	@DescripLog(desc="导出采购清单")
 	@Override
 	public void exportExcel(PurchaseOrder purchaseOrder,
-			ServletOutputStream outputStream) {
+			ServletOutputStream outputStream) throws ServiceException{
 		ExcelUtil.exportPurchaseExcel(purchaseOrder,outputStream);
 	}
 }

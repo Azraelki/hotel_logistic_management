@@ -69,9 +69,15 @@
 	<!--  配置需要进行事务控制的类 -->
 	<aop:config>
 		<aop:pointcut id="serviceOperation" expression="bean(*Service)" />
-		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" />
+		<aop:advisor advice-ref="txAdvice" pointcut-ref="serviceOperation" order="2"/>
 	</aop:config>
-	
+	<!-- 完成aspectj支持，以注解方式将通知编织到非公共方法中 -->
+	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
+	<!-- 创建通知bean -->
+	<bean id="logAspect" class="cn.azrael.main.core.log.LogAspect">
+		<property name="systemLogService" ref="systemLogService">
+		</property>
+	</bean>
 	<!-- 所有业务dao的parent -->
     <bean id="baseDao" abstract="true">
     	<property name="sessionFactory" ref="sessionFactory"></property>

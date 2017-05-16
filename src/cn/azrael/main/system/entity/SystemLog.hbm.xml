@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+	"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+	"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping package="cn.azrael.main.system.entity">
+	<class name="SystemLog" table="sys_log">
+		<id name="id" type="string">
+			<column name="sl_id" length="32"></column>
+			<generator class="uuid.hex"></generator>
+		</id>
+		<property name="className" column="sl_classname" type="string" length="200" not-null="true"></property>
+		<property name="methodName" column="sl_methodname" type="string"  length="200" not-null="true"></property>
+		<property name="params" column="sl_params" type="string" length="200" not-null="true"></property>
+		<property name="user" column="sl_username" type="string" length="10" not-null="true"></property>
+		<property name="date" column="sl_date" type="double"  not-null="true"></property>
+		<property name="flag" column="sl_flag" type="integer" not-null="true" ></property>
+		<property name="desc" column="sl_desc" type="string" length="20"></property>
+		<property name="error" column="sl_err" type="string" length="4000"></property>
+	</class>
+
+</hibernate-mapping>
+
+
+
