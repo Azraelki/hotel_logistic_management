@@ -64,7 +64,7 @@
       	  <ul class="nav navbar-nav">
       	  	<li class="active"><a title="content" href="${path }/user/employee.action">员工管理</a></li>
       	  	<li><a title="content" href="${path }/linen/linen.action">布草管理</a></li>
-      	  	<li><a title="content" href="${path }/purchase/purchaseorder.action">采购管理</a></li>
+      	  	<li><a title="content" href="${path }/purchase/purchaseorder.action">申购管理</a></li>
       	  	<!--<li><a title="content" href="${path }/food/food.action">餐饮管理</a></li>-->
       	  	<li><a title="content" href="${path }/facilitie/facilitie.action">物资管理</a></li>
 	      	<li><a title="content" href="${path }/system/system.action">系统维护</a></li>

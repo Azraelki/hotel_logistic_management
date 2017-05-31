@@ -18,7 +18,7 @@ public class Constant {
 	static{
 		PRIVILEGE_MAP.put(PRIVILEGE_YHGL, "用户管理");
 		PRIVILEGE_MAP.put(PRIVILEGE_BCGL, "布草管理");
-		PRIVILEGE_MAP.put(PRIVILEGE_CGGL, "采购管理");
+		PRIVILEGE_MAP.put(PRIVILEGE_CGGL, "申购管理");
 		PRIVILEGE_MAP.put(PRIVILEGE_CYGL, "餐饮管理");
 		PRIVILEGE_MAP.put(PRIVILEGE_SSWH, "设施维护");
 		PRIVILEGE_MAP.put(PRIVILEGE_XTWH, "系统维护");
