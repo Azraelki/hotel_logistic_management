@@ -13,7 +13,7 @@
   	<form id="list_info" action="" title="${path }/user/job_info.action" method="post" enctype="multipart/form-data">
   	  <div class="row">
   	  	<div class="col-xs-2">
-		  	  <c:if test="${SYS_USER.type == 1 }">
+		  	  <c:if test="${SYS_USER.type == 0 }">
 	       	  		<a href="add" title="" class="btn btn-default btn-block">新&nbsp;增</a>
 		      </c:if>
   	  	</div>
@@ -35,7 +35,7 @@
 		      <%--<td><input name="selectedRow" type="checkbox" value="${item.id }"></td>--%>
 		      <td>${item.name }</td>
 		      <td>${item.task }</td>
-		      <c:if test="${SYS_USER.type == 1 }">
+		      <c:if test="${SYS_USER.type == 0 }">
 		      <td>
 		      	<a href="editUI" title="${item.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">编辑</a>
 		      	<a href="delete" title="${item.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">删除</a>
