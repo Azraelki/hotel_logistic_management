@@ -50,7 +50,11 @@
     				<div class="col-xs-4">
     					<select id="jName" name="employee.jobId.id" class="form-control" >
     						<c:forEach var="item" items="${jobList}">
-    							<option value="${item.id }">${item.name }</option>
+    							<c:choose>
+    								<c:when test="${item.id!=0 }">
+    									<option value="${item.id }">${item.name }</option>
+    								</c:when>
+    							</c:choose>
     						</c:forEach>
     					</select>
     				</div>

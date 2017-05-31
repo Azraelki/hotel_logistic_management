@@ -38,15 +38,7 @@
 	  <tbody>
 	  	<c:forEach var="item" items="${pageResult.items }" varStatus="status">
 		    <tr>
-		      <c:choose>
-		      	<c:when test="${item.jobId.name=='店长' }">
-		      		<td></td>
-		      	</c:when>
-		      	<c:otherwise>
-		      		<td><input name="selectedRow" type="checkbox" value="${item.id }"></td>
-		      	</c:otherwise>
-		      </c:choose>
-		      
+		      <td><input name="selectedRow" type="checkbox" value="${item.id }"></td>
 		      <td>${item.name }</td>
 		      <c:choose>
 		      	<c:when test="${item.gender }"><td>女</td></c:when>

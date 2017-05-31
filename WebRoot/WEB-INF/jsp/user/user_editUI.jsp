@@ -23,6 +23,7 @@
     				<div class="col-xs-4">
     					<input type="hidden" name="pageNo" value="${pageNo }">
     					<input type="hidden" name="employee.id" value="${employee.id }">
+    					<input type="hidden" name="employee.status" value="${employee.status }">
     					<input type="text" id="eName" name="employee.name" value="${employee.name }" class="form-control" placeholder="请输入员工姓名">
     				</div>
     				<span class="col-xs-6"></span>
@@ -66,11 +67,15 @@
     					<select id="jName" name="employee.jobId.id"  class="form-control" >
     						<c:forEach var="item" items="${jobList}">
     							<c:choose>
-	    							<c:when test="${item.id == employee.jobId.id }">
+	    							<c:when test="${item.id == employee.jobId.id}">
 	    								<option value="${item.id }" selected="selected">${item.name }</option>
 	    							</c:when>
 	    							<c:otherwise>
-	    								<option value="${item.id }">${item.name }</option>
+	    								<c:choose>
+		    								<c:when test="${item.id!=0 }">
+		    									<option value="${item.id }">${item.name }</option>
+		    								</c:when>
+		    							</c:choose>
 	    							</c:otherwise>
 	    						</c:choose>
     						</c:forEach>
