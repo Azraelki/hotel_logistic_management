@@ -2,8 +2,12 @@
 <%
 pageContext.setAttribute("basePath", request.getContextPath()+"/") ;
 %>	
-	<!-- BOOTSTRAP STYLES-->
+	<!-- BOOTSTRAP STYLES
 	<link rel="stylesheet" href="${basePath }css/bootstrap.min.css" >
+	-->
+	<!-- BOOTSTRAP-BLUE STYLES-->
+	<link rel="stylesheet" href="${basePath }css/bootstrap.min.blue.css" >
+	
 	<!-- JQUERY SCRIPTS -->
 	<script src="${basePath }js/jquery-1.10.2.js"></script>
 	<!-- BOOTSTRAP SCRIPTS -->
