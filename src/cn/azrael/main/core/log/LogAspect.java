@@ -92,11 +92,12 @@ public class LogAspect implements Ordered{
 	private String parseParames(Object[] parames) {
 		String str = "";
 		for (Object object : parames) {
-			str = str + object.toString();
+			str = str + object.getClass().getSimpleName();
 		}
 		if(str.length() > 1){
 			str = str.substring(0, str.length()-1);
 		}
+		System.out.println(str);
 		return str;
 	}
 	@Override
