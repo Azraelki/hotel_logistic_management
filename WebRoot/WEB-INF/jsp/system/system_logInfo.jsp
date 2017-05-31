@@ -55,7 +55,6 @@
 	      <th>用户</th>
 	      <th>日志级别</th>
 	      <th>方法描述</th>
-	      <th>异常类型</th>
 	      <th>操作</th>
 	    </tr>
 	  </thead>
@@ -70,7 +69,6 @@
 		      	</c:choose>
 		      </td>
 		      <td>${item.desc }</td>
-		      <td>${item.error }</td>
 		      <td>
 		      	<a href="logDetail" title="${item.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">详情</a>
 		      </td>
