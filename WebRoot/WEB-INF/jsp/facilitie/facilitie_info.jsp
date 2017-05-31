@@ -65,7 +65,7 @@
 		      <td>${item.normalNum+item.badNum }</td>
 		      <td>
 		      	<a href="editUI" title="${item.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">编辑</a>
-		      	<a href="delete" title="${item.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">删除</a>
+		      	<%-- <a href="delete" title="${item.id }" class="btn btn-default" style="padding-top: 1px;padding-bottom: 1px;">删除</a> --%>
 		      </td>
 		    </tr>
 	    </c:forEach>

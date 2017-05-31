@@ -16,7 +16,7 @@
   	  		<input name="facilitie.name" value="${facilitie.name }" class="form-control" type="text" id="serachContent" placeholder="请输入查询布草名称">
   	  	</div>
   	  	<div class="col-xs-2">
-  	  		<a id="serach" href="finfo" class="btn btn-default btn-block">搜&nbsp;索</a>
+  	  		<a id="serach" href="fInfo" class="btn btn-default btn-block">搜&nbsp;索</a>
   	  	</div>
   	  </div>
     <table class="table table-striped table-hover ">
