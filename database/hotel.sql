@@ -23,6 +23,7 @@ CREATE TABLE employee(
     `e_age` INT,
     `e_phone_num` VARCHAR(20),
     `e_arrived_at` REAL,
+    `e_status` BOOL,
     KEY `idx_e_arrived_at` (`e_arrived_at`),
     CONSTRAINT `fk_e_j_id` FOREIGN KEY(`j_id`) REFERENCES jobs(`j_id`),
     PRIMARY KEY(`e_id`)

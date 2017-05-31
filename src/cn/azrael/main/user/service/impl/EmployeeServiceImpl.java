@@ -69,7 +69,8 @@ public class EmployeeServiceImpl extends BaseServiceImpl<Employee> implements Em
 			if(user!=null)
 				userDao.delete(user.getId());
 		}
-		employeeDao.delete(employee.getId());
+		employee.setStatus(false);
+		employeeDao.update(employee);
 	}
 	@DescripLog(desc="更新并判断其是否有必要更改登陆的权限")
 	@Override

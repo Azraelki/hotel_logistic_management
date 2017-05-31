@@ -40,6 +40,7 @@ public class EmployeeAction extends BaseAction{
 					queryHelper.addCondition("e.name like ?", "%"+employee.getName()+"%");
 				}
 			}
+			queryHelper.addCondition("e.status=?", true);
 			queryHelper.addOrderByProperty("e.arrivedAt", QueryHelper.ORDER_BY_ASC);
 			pageResult = employeeService.getPageResult(queryHelper, this.getPageNo(), this.getPageSize());
 		} catch (Exception e) {
@@ -60,6 +61,7 @@ public class EmployeeAction extends BaseAction{
 					message = "出现同名员工,请加以区分!";
 					return "add";
 				}
+				employee.setStatus(true);
 				employeeService.addEmployeeAndSaveUser(employee);
 				message = "添加成功！";
 			} catch (Exception e) {

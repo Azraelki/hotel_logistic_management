@@ -11,6 +11,7 @@
 		</id>
 		<property name="name" column="e_name" type="string" length="20" not-null="true"></property>
 		<property name="gender" column="e_gender" type="boolean"  not-null="true"></property>
+		<property name="status" column="e_status" type="boolean"  not-null="true"></property>
 		<property name="age" column="e_age" type="integer"  not-null="true"></property>
 		<property name="phoneNumber" column="e_phone_num" type="string" length="20" not-null="true"></property>
 		<property name="arrivedAt" column="e_arrived_at" type="double"  not-null="true"></property>

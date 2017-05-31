@@ -17,6 +17,7 @@ public class Employee implements Serializable{
 	private Integer age;
 	private String phoneNumber;
 	private Double arrivedAt;
+	private boolean status;
 	public String getId() {
 		return id;
 	}
@@ -58,6 +59,12 @@ public class Employee implements Serializable{
 	}
 	public void setArrivedAt(Double arrivedAt) {
 		this.arrivedAt = arrivedAt;
+	}
+	public boolean isStatus() {
+		return status;
+	}
+	public void setStatus(boolean status) {
+		this.status = status;
 	}
 	@Override
 	public String toString() {
