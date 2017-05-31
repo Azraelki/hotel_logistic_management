@@ -112,6 +112,7 @@ public class SystemAction extends BaseAction{
 	public String editRole() throws ServiceException{
 		if(job!=null && job.getId()!=null){
 			if(privileges!=null && privileges.length > 0){
+				roleService.deleteByType(job.getId());
 				for(String s : privileges){
 					Role role = roleService.findByTypeAndPrivilege(job.getId(),s);
 					if(role != null)
