@@ -1,5 +1,7 @@
 package cn.azrael.main.purchase.action;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -84,9 +86,11 @@ public class PurchaseOrderAction extends BaseAction{
 		try{
 			if(purchaseOrder!=null && purchaseOrder.getId()!=null){
 				purchaseOrder = purchaseOrderService.findObjectById(purchaseOrder.getId());
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String fileName = "物资申购单"+sdf.format(new Date(purchaseOrder.getDate().longValue()*1000))+".xlsx";
 				HttpServletResponse response = ServletActionContext.getResponse();
 				response.setContentType("application/x-execl");
-				response.setHeader("Content-Disposition", "attachment;filename="+new String("采购清单.xlsx".getBytes(),"ISO-8859-1"));
+				response.setHeader("Content-Disposition", "attachment;filename="+new String(fileName.getBytes(),"ISO-8859-1"));
 				ServletOutputStream outputStream = response.getOutputStream();
 				purchaseOrderService.exportExcel(purchaseOrder,outputStream);
 				if(outputStream!=null){

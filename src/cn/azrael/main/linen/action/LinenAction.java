@@ -1,6 +1,8 @@
 package cn.azrael.main.linen.action;
 
 import java.net.URLDecoder;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -103,9 +105,11 @@ public class LinenAction extends BaseAction{
 		try{
 			if(linen!=null && linen.getId()!=null){
 				linen = linenService.findObjectById(linen.getId());
+				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+				String fileName = "布草洗涤清单"+sdf.format(new Date(linen.getDate().longValue()*1000))+".xlsx";
 				HttpServletResponse response = ServletActionContext.getResponse();
 				response.setContentType("application/x-execl");
-				response.setHeader("Content-Disposition", "attachment;filename="+new String("布草洗涤清单.xlsx".getBytes(),"ISO-8859-1"));
+				response.setHeader("Content-Disposition", "attachment;filename="+new String(fileName.getBytes(),"ISO-8859-1"));
 				ServletOutputStream outputStream = response.getOutputStream();
 				linenService.exportExcel(linen,outputStream);
 				if(outputStream!=null){
